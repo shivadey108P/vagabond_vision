@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1040334575127",
+    "project_id": "vagabond-vision",
+    "storage_bucket": "vagabond-vision.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040334575127:android:add31f94243f9637edee52",
+        "android_client_info": {
+          "package_name": "com.example.vagabond_vision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040334575127-3vsb08hmgah7r6ebuh8dgua9jd0tpajo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv0i777vV605R1x1mzJc-wxrJIw6kXr90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040334575127-3vsb08hmgah7r6ebuh8dgua9jd0tpajo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1040334575127-nkl0e23uh2eniaugap6pto2u1qge6hi6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vegabondVision"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040334575127:android:8c39bbc43fedebd7edee52",
+        "android_client_info": {
+          "package_name": "com.example.vegabond_vision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040334575127-3vsb08hmgah7r6ebuh8dgua9jd0tpajo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv0i777vV605R1x1mzJc-wxrJIw6kXr90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040334575127-3vsb08hmgah7r6ebuh8dgua9jd0tpajo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1040334575127-nkl0e23uh2eniaugap6pto2u1qge6hi6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vegabondVision"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
