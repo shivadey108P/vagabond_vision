@@ -23,17 +23,52 @@ class _SignupScreenState extends State<SignupScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   late String fullName;
-  late String password;
   late String email;
+  late String password;
   late String reEnterPassword;
 
-  String? nameError;
-  String? reEnterPasswordError;
+  // Error messages for validation feedback
+  String? fullNameError;
   String? emailError;
   String? passwordError;
+  String? reEnterPasswordError;
 
   bool showText1 = false;
   bool showText2 = false;
+
+  // Function to validate all inputs
+  bool validateInputs() {
+    bool isValid = true;
+
+    setState(() {
+      // Validate full name (letters and spaces only)
+      if (fullName.isEmpty || !RegExp(r'^[a-zA-Z\s]+$').hasMatch(fullName)) {
+        fullNameError = 'Full name must contain only letters and spaces.';
+        isValid = false;
+      } else {
+        fullNameError = null;
+      }
+
+      // Validate email
+      if (email.isEmpty || !RegExp(r'^\S+@\S+\.\S+$').hasMatch(email)) {
+        emailError = 'Please enter a valid email address.';
+        isValid = false;
+      }
+      // Validate password length
+      if (password.length < 6) {
+        passwordError = 'Password must be at least 6 characters long.';
+        isValid = false;
+      }
+      // Validate re-entered password
+      if (reEnterPassword != password) {
+        reEnterPasswordError = 'Passwords do not match.';
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,57 +76,57 @@ class _SignupScreenState extends State<SignupScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: SingleChildScrollView(
-          // Allows for vertical scrolling
           child: Padding(
-            // Ensure consistent spacing
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 30),
-                const Hero(
-                  tag: 'Heading',
+                const Padding(
+                  padding: EdgeInsets.only(top: 32.0),
                   child: Text(
                     "Sign up",
                     style: kOnBoardingHeading,
                   ),
                 ),
-                const SizedBox(height: 15),
-                const Hero(
-                  tag: 'SubHeading',
-                  child: Text(
-                    "Welcome! Please enter your name, email, and password to create your account.",
-                    style: kWelcomeMessage,
-                  ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Welcome! Please enter your Name, email, and password to create your account.",
+                  style: kWelcomeMessage,
                 ),
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
-                    style: kTextField,
                     keyboardType: TextInputType.name,
                     onChanged: (value) {
                       fullName = value;
                     },
                     decoration: textFieldDecor(
                       "Full Name",
-                      const Icon(FontAwesomeIcons.user),
+                      Icon(
+                        FontAwesomeIcons.user,
+                        color:
+                            fullNameError == null ? Colors.black : Colors.red,
+                      ),
+                      errorText: fullNameError,
                     ),
                   ),
                 ),
-                const SizedBox(
-                    height: 30), // Ensures spacing between text fields
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
-                    style: kTextField,
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
                       email = value;
                     },
                     decoration: textFieldDecor(
                       "Email Address",
-                      const Icon(FontAwesomeIcons.envelope),
+                      Icon(
+                        FontAwesomeIcons.envelope,
+                        color: emailError == null ? Colors.black : Colors.red,
+                      ),
+                      errorText: emailError,
                     ),
                   ),
                 ),
@@ -99,37 +134,33 @@ class _SignupScreenState extends State<SignupScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
+                    obscureText: showText1,
                     onChanged: (value) {
                       password = value;
                     },
-                    style: kTextField,
-                    obscureText: showText1,
-                    keyboardType: TextInputType.text,
                     decoration: textFieldDecor(
-                      "Your Password",
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            showText1 = !showText1;
-                          });
-                        },
-                        child: showText1
-                            ? const Icon(FontAwesomeIcons.eyeSlash)
-                            : const Icon(FontAwesomeIcons.eye),
-                      ),
-                    ),
+                        "Your Password",
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showText1 = !showText1;
+                            });
+                          },
+                          child: showText1
+                              ? const Icon(FontAwesomeIcons.eyeSlash)
+                              : const Icon(FontAwesomeIcons.eye),
+                        ),
+                        errorText: passwordError),
                   ),
                 ),
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
+                    obscureText: showText2,
                     onChanged: (value) {
                       reEnterPassword = value;
                     },
-                    style: kTextField,
-                    obscureText: showText2,
-                    keyboardType: TextInputType.text,
                     decoration: textFieldDecor(
                       "Re-enter Password",
                       GestureDetector(
@@ -142,30 +173,42 @@ class _SignupScreenState extends State<SignupScreen> {
                             ? const Icon(FontAwesomeIcons.eyeSlash)
                             : const Icon(FontAwesomeIcons.eye),
                       ),
+                      errorText: reEnterPasswordError,
                     ),
                   ),
                 ),
                 const SizedBox(height: 50),
-                Hero(
-                  tag: 'Signup',
-                  child: RoundedRectButton(
-                    textInput: 'Sign up',
-                    onPressed: () async {
-                      setState(() {
-                        showSpinner = true;
-                      });
+                RoundedRectButton(
+                  textInput: 'Sign up',
+                  onPressed: () {
+                    if (validateInputs()) {
                       try {
-                        final newUser =
-                            await _auth.createUserWithEmailAndPassword(
-                                email: email, password: password);
-                        if (newUser != null) {
-                          Navigator.pushNamed(context, BottomNavigation.id);
-                        }
-                        _firestore.collection('UserData').add({
-                          'FullName': fullName,
-                          'email': email,
-                          'password': reEnterPassword,
+                        setState(() {
+                          showSpinner = true;
                         });
+
+                        _auth
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password)
+                            .then((user) {
+                          _firestore
+                              .collection('UserData')
+                              .doc(user.user?.uid)
+                              .set({
+                            'FullName': fullName,
+                            'email': email,
+                            'createdAt': FieldValue.serverTimestamp(),
+                          });
+                          Navigator.pushNamed(context, BottomNavigation.id);
+                        }).catchError((e) {
+                          if (e is FirebaseAuthException) {
+                            Fluttertoast.showToast(
+                              msg: "Error: ${e.code}",
+                              backgroundColor: Colors.red,
+                            );
+                          }
+                        });
+
                         setState(() {
                           showSpinner = false;
                         });
@@ -177,43 +220,40 @@ class _SignupScreenState extends State<SignupScreen> {
                         } else {
                           Fluttertoast.showToast(msg: error.toString());
                         }
+
+                        setState(() {
+                          showSpinner = false;
+                        });
                       }
-                    },
-                    colour: kDeepOrangeAccent,
-                  ),
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Please correct the errors before proceeding.',
+                        backgroundColor: Colors.red,
+                      );
+                    }
+                  },
+                  colour: kDeepOrangeAccent,
                 ),
                 const SizedBox(height: 175),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Already have an account?",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 72, 71, 71),
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Text("Already have an account?"),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, LoginScreen.id);
+                      },
+                      child: const Text(
                         "Login",
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20), // Ensures spacing at the bottom
               ],
             ),
           ),

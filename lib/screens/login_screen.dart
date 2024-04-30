@@ -21,9 +21,36 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
   final _auth = FirebaseAuth.instance;
-  late String email;
-  late String password;
+  String email = '';
+  String password = '';
   bool showText = false;
+
+  // Variables to hold error messages
+  String? emailError;
+  String? passwordError;
+
+  // Function to validate the email and password
+  bool validateInputs() {
+    bool isValid = true;
+
+    setState(() {
+      if (email.isEmpty || !RegExp(r'^\S+@\S+\.\S+$').hasMatch(email)) {
+        emailError = 'Please enter a valid email address.';
+        isValid = false;
+      }
+
+      if (password.isEmpty) {
+        passwordError = 'Please enter your password.';
+        isValid = false;
+      } else if (password.length < 6) {
+        passwordError = 'Password must be at least 6 characters long.';
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,28 +58,20 @@ class _LoginScreenState extends State<LoginScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: SingleChildScrollView(
-          // Allows vertical scrolling to avoid overflow
           child: Padding(
-            padding: const EdgeInsets.all(
-                16.0), // Overall padding for consistent spacing
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 70),
-                const Hero(
-                  tag: 'Heading',
-                  child: Text(
-                    "Welcome Back! 😍",
-                    style: kOnBoardingHeading,
-                  ),
+                const Text(
+                  "Welcome Back! 😍",
+                  style: kOnBoardingHeading,
                 ),
                 const SizedBox(height: 15),
-                const Hero(
-                  tag: 'SubHeading',
-                  child: Text(
-                    "Happy to see you again! Please enter your email and password to login to your account.",
-                    style: kWelcomeMessage,
-                  ),
+                const Text(
+                  "Please enter your email and password to login.",
+                  style: kWelcomeMessage,
                 ),
                 const SizedBox(height: 50),
                 Padding(
@@ -65,7 +84,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: kTextField,
                     decoration: textFieldDecor(
                       "Email Address",
-                      const Icon(FontAwesomeIcons.envelope),
+                      Icon(
+                        FontAwesomeIcons.envelope,
+                        color: emailError == null ? Colors.black : Colors.red,
+                      ),
+                      errorText: emailError,
                     ),
                   ),
                 ),
@@ -74,11 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
                     style: kTextField,
+                    obscureText: showText,
                     onChanged: (value) {
                       password = value;
                     },
-                    obscureText: showText,
-                    keyboardType: TextInputType.text,
                     decoration: textFieldDecor(
                       "Your Password",
                       GestureDetector(
@@ -91,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ? const Icon(FontAwesomeIcons.eyeSlash)
                             : const Icon(FontAwesomeIcons.eye),
                       ),
+                      errorText: passwordError,
                     ),
                   ),
                 ),
@@ -100,45 +123,75 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                        // Handle forgot password action here
                         Fluttertoast.showToast(
-                          msg: "Forgot password tapped",
+                          msg: "Forgot Password?",
                         );
                       },
                       child: const Text(
                         'Forgot Password?',
                         style: TextStyle(
                           color: kDeepOrangeAccent,
-                          fontSize: 16, // You can change the color
+                          fontSize: 16,
                         ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 30),
-                Hero(
-                  tag: 'login',
-                  child: RoundedRectButton(
-                    textInput: 'Login',
-                    onPressed: () async {
-                      setState(() {
-                        showSpinner = true;
-                      });
+                RoundedRectButton(
+                  textInput: 'Login',
+                  onPressed: () {
+                    setState(() {
+                      showSpinner = true;
+                    });
+
+                    if (validateInputs()) {
                       try {
-                        final user = await _auth.signInWithEmailAndPassword(
-                            email: email, password: password);
-                        if (user != null) {
+                        setState(() {
+                          showSpinner = true;
+                        });
+
+                        _auth
+                            .signInWithEmailAndPassword(
+                                email: email, password: password)
+                            .then((user) {
                           Navigator.pushNamed(context, BottomNavigation.id);
-                        }
+                        }).catchError((e) {
+                          if (e is FirebaseAuthException) {
+                            Fluttertoast.showToast(
+                              msg: "Error: ${e.code}",
+                              backgroundColor: Colors.red,
+                            );
+                          }
+                        });
+
                         setState(() {
                           showSpinner = false;
                         });
-                      } catch (e) {
-                        Fluttertoast.showToast(msg: e.toString());
+                      } on FirebaseAuthException catch (error) {
+                        if (error.code == 'email-already-in-use') {
+                          Fluttertoast.showToast(msg: 'User already exists');
+                        } else if (error.code == 'network-request-failed') {
+                          Fluttertoast.showToast(msg: 'Network error');
+                        } else {
+                          Fluttertoast.showToast(msg: error.toString());
+                        }
+
+                        setState(() {
+                          showSpinner = false;
+                        });
                       }
-                    },
-                    colour: kDeepOrangeAccent,
-                  ),
+                    } else {
+                      setState(() {
+                        showSpinner = false;
+                      });
+                      Fluttertoast.showToast(
+                        msg: 'Please correct the errors before login.',
+                        backgroundColor: Colors.red,
+                      );
+                    }
+                  },
+                  colour: kDeepOrangeAccent,
                 ),
                 const SizedBox(height: 20),
                 const Row(
@@ -169,9 +222,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
                 GoogleButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Fluttertoast.showToast(msg: "Google Login Not Implemented");
+                  },
                 ),
-
                 const SizedBox(height: 160),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -186,12 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignupScreen(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, SignupScreen.id);
                       },
                       child: const Text(
                         "Sign Up",
@@ -203,7 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ],
-                ), // Consistent spacing at the bottom
+                ),
               ],
             ),
           ),

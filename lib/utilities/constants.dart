@@ -12,8 +12,18 @@ const kOnBoardingMessage = TextStyle(
   color: kGreyColor,
 );
 
-textFieldDecor(String text, Widget icon) => InputDecoration(
+const kServiceText = TextStyle(
+    fontFamily: 'TiltNeon', fontSize: 16, fontWeight: FontWeight.bold);
+
+const kServiceLocationText = TextStyle(
+    fontSize: 14,
+    color: Color.fromARGB(255, 127, 127, 127),
+    fontFamily: 'TiltNeon');
+
+textFieldDecor(String text, Widget icon, {String? errorText}) =>
+    InputDecoration(
       hintText: text,
+      errorText: errorText,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(35),
       ),
@@ -46,6 +56,12 @@ const kNormal = TextStyle(
   fontSize: 22.0,
   fontWeight: FontWeight.w500,
 );
+
+const kLocationText = TextStyle(
+    fontFamily: 'TiltNeon',
+    fontSize: 18.0,
+    fontWeight: FontWeight.w500,
+    color: kDeepOrangeAccent);
 
 const kTextField = TextStyle(
   fontFamily: 'consola',

@@ -30,7 +30,7 @@ class VagabondVision extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xfffaf9f9),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: OnBoardingScreen.id,
+      initialRoute: PlaceScreen.id,
       routes: {
         OnBoardingScreen.id: (context) => OnBoardingScreen(),
         LoginScreen.id: (context) => LoginScreen(),

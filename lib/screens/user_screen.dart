@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -17,23 +18,42 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   final _auth = FirebaseAuth.instance;
+  String name = '';
+  String email = '';
   bool showSpinner = false;
   late User loggedInUser;
+  final _fireStore = FirebaseFirestore.instance;
 
   @override
   void initState() {
     super.initState();
-    getCurrentUser();
+    getCurrentUser(); // Retrieve current user data
   }
 
   void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
+    final user = _auth.currentUser;
+    if (user != null) {
+      loggedInUser = user;
+      findDocumentByUID(loggedInUser.uid); // Find the Firestore document by UID
+    }
+  }
+
+  void findDocumentByUID(String uid) async {
+    final docSnapshot = await _fireStore
+        .collection('UserData')
+        .doc(uid)
+        .get(); // Using UID as document ID
+
+    if (docSnapshot.exists) {
+      final fullName = docSnapshot.data()?['FullName'];
+      final emailId = docSnapshot.data()?['email']; // Retrieve 'FullName'
+
+      if (fullName != null && fullName.isNotEmpty) {
+        final nameParts = fullName.split(' '); // Extract first name
+        name = nameParts.isNotEmpty ? nameParts[0] : '';
+        email = emailId; // Get the first name
+        setState(() {}); // Update UI with the retrieved first name
       }
-    } catch (e) {
-      print(e);
     }
   }
 
@@ -100,17 +120,17 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           width: 20,
                         ),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               textAlign: TextAlign.start,
-                              'User Name',
+                              name,
                               style: kHeading,
                             ),
                             Text(
                               textAlign: TextAlign.start,
-                              'User email',
+                              email,
                               style: kOnBoardingMessage,
                             ),
                           ],
