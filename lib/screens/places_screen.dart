@@ -1,5 +1,6 @@
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '/components/buttons_custom.dart';
@@ -190,8 +191,12 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         style: TextStyle(
                             color: const Color.fromARGB(255, 126, 126, 126))),
                     SizedBox(width: 5),
-                    Icon(Icons.map_outlined,
-                        color: kDeepOrangeAccent, size: 15),
+                    SvgPicture.asset(
+                      'icons/conversion_path.svg', // Path to your colorful Google logo
+                      width: 15, // Icon width
+                      height: 15,
+                      color: kDeepOrangeAccent, // Icon height
+                    ),
                     SizedBox(width: 5),
                     Text('30 min by car',
                         style: TextStyle(
