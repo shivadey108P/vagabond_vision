@@ -10,12 +10,14 @@ import '/utilities/constants.dart';
 class PlaceScreen extends StatefulWidget {
   static const String id = 'place_screen';
 
+  const PlaceScreen({super.key});
+
   @override
   State<PlaceScreen> createState() => _PlaceScreenState();
 }
 
 class _PlaceScreenState extends State<PlaceScreen> {
-  bool favlike = true;
+  bool favLike = true;
   static const List<String> sampleImages = [
     'https://img.freepik.com/free-photo/beautiful-volcano-landscape_23-2150787896.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvFPrUA9q-DW96GA_Jv-NfGsK-mQ0qXxs5boZ94PUOSw&s'
@@ -62,8 +64,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        favlike = !favlike;
-                        !favlike
+                        favLike = !favLike;
+                        !favLike
                             ? Fluttertoast.showToast(msg: 'Added to Favourites')
                             : Fluttertoast.showToast(
                                 msg: 'Removed from Favourites');
@@ -85,13 +87,13 @@ class _PlaceScreenState extends State<PlaceScreen> {
                       height: 65,
                       width: 65,
                       child: Center(
-                        child: favlike
-                            ? Icon(
+                        child: favLike
+                            ? const Icon(
                                 Icons.favorite_outline,
                                 color: Color.fromARGB(255, 239, 66, 22),
                                 size: 45,
                               )
-                            : Icon(
+                            : const Icon(
                                 Icons.favorite,
                                 color: Color.fromARGB(255, 239, 66, 22),
                                 size: 45,
@@ -100,7 +102,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     ),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 498,
                   child: Row(
                     children: [
@@ -110,7 +112,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                       Text(
                         'Fuji Mountain, JAPAN',
                         style: TextStyle(
-                          color: const Color.fromARGB(255, 230, 79, 3),
+                          color: Color.fromARGB(255, 230, 79, 3),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'TiltNeon',
@@ -121,9 +123,9 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.only(left: 32),
+            const SizedBox(height: 5),
+            const Padding(
+              padding: EdgeInsets.only(left: 32),
               child: Text(
                 'Fuji Mountain',
                 style: TextStyle(
@@ -133,8 +135,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 8),
+            const Padding(
+              padding: EdgeInsets.only(left: 35, right: 8),
               child: Text(
                 'Fuji is the tallest peak in Japan, the result of volcanic activity that began approximately 100,000 years ago. Today, Mt. Fuji and the surrounding area are a popular recreational destination for hiking, camping and relaxation.',
                 style: TextStyle(
@@ -145,31 +147,31 @@ class _PlaceScreenState extends State<PlaceScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 32, right: 32, top: 5),
-              child: Container(
+              child: SizedBox(
                 height: 35,
                 width: 450,
                 child: Row(
                   children: [
-                    Icon(Icons.star, color: Colors.amber, size: 18),
-                    SizedBox(width: 3),
-                    Text(
+                    const Icon(Icons.star, color: Colors.amber, size: 18),
+                    const SizedBox(width: 3),
+                    const Text(
                       '4.5',
                       style: TextStyle(
                           fontFamily: 'TiltNeon',
                           fontSize: 15.5,
                           color: Colors.black),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Color.fromARGB(255, 255, 248, 248),
+                        color: const Color.fromARGB(255, 255, 248, 248),
                       ),
                       height: 30,
                       width: 135,
                       child: GestureDetector(
                         onTap: () {},
-                        child: Row(
+                        child: const Row(
                           children: [
                             SizedBox(width: 8),
                             Icon(Icons.reviews_outlined,
@@ -186,19 +188,20 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Text('|',
+                    const SizedBox(width: 10),
+                    const Text('|',
                         style: TextStyle(
-                            color: const Color.fromARGB(255, 126, 126, 126))),
-                    SizedBox(width: 5),
+                            color: Color.fromARGB(255, 126, 126, 126))),
+                    const SizedBox(width: 5),
                     SvgPicture.asset(
                       'icons/conversion_path.svg', // Path to your colorful Google logo
-                      width: 15, // Icon width
-                      height: 15,
-                      color: kDeepOrangeAccent, // Icon height
+                      width: 20, // Icon width
+                      height: 20,
+                      color: kDeepOrangeAccent,
+                      // Icon height
                     ),
-                    SizedBox(width: 5),
-                    Text('30 min by car',
+                    const SizedBox(width: 5),
+                    const Text('30 min by car',
                         style: TextStyle(
                             fontSize: 15.5,
                             fontFamily: 'TiltNeon',
@@ -207,9 +210,9 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 35),
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.only(left: 35),
               child: Text(
                 'Services in Fuji Mountains',
                 style: TextStyle(

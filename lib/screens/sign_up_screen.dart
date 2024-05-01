@@ -45,8 +45,6 @@ class _SignupScreenState extends State<SignupScreen> {
       if (fullName.isEmpty || !RegExp(r'^[a-zA-Z\s]+$').hasMatch(fullName)) {
         fullNameError = 'Full name must contain only letters and spaces.';
         isValid = false;
-      } else {
-        fullNameError = null;
       }
 
       // Validate email

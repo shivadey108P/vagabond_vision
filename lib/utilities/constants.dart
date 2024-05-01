@@ -51,6 +51,12 @@ const kHeading = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
+const kHeadingInCards = TextStyle(
+  fontFamily: 'TiltNeon',
+  fontSize: 18.0,
+  fontWeight: FontWeight.w700,
+);
+
 const kNormal = TextStyle(
   fontFamily: 'TiltNeon',
   fontSize: 22.0,
@@ -62,6 +68,12 @@ const kLocationText = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w500,
     color: kDeepOrangeAccent);
+
+const kLocationTextInCards = TextStyle(
+    fontFamily: 'TiltNeon',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w500,
+    color: kGreyColor);
 
 const kTextField = TextStyle(
   fontFamily: 'consola',
