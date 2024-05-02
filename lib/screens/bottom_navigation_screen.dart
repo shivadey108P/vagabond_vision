@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '/utilities/constants.dart';
 import 'favourite_screen.dart';
@@ -24,15 +24,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
     UserScreen(),
   ];
 
-  BottomNavigationBarItem _createNavigationBarItem(IconData icon, int index) {
+  BottomNavigationBarItem _createNavigationBarItem(
+      IconData icon, IconData icon2, int index) {
     return BottomNavigationBarItem(
+      label: '',
       icon: Icon(
-        icon,
-        color: currentIndex == index
-            ? kDeepOrangeAccent
-            : Colors.black, // Change color based on selection
+        currentIndex == index ? icon2 : icon,
+        color: currentIndex == index ? kDeepOrangeAccent : Colors.black, //
       ),
-      label: currentIndex == index ? '•' : '', // Dot as label for selected
     );
   }
 
@@ -40,28 +39,35 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        height: 80, // Increased height for the bottom navigation bar
-        color: const Color(0xfffaf9f9),
+        color: Colors.white,
         clipBehavior: Clip.none, // Background color
         child: BottomNavigationBar(
+          elevation: 15,
+          enableFeedback: false,
           currentIndex: currentIndex, // Current selected index
-          type: BottomNavigationBarType.fixed, // Avoid animations
+
           showUnselectedLabels: false, // No labels for unselected icons
-          showSelectedLabels: true, // Ensure selected label is visible
-          selectedFontSize: 22, // Consistent font size
-          unselectedFontSize: 0, // Consistent font size
-          iconSize: 27, // Consistent icon size to prevent shifting
-          selectedItemColor: kDeepOrangeAccent, // Highlight selected item
+          showSelectedLabels: false, // Ensure selected label is visible
+          iconSize: 24, // Consistent icon size to prevent shifting
+          selectedItemColor: kDeepOrangeAccent,
+          type: BottomNavigationBarType.fixed,
+          selectedIconTheme: const IconThemeData(size: 24),
+          unselectedIconTheme: const IconThemeData(size: 24),
+
           onTap: (index) {
             setState(() {
               currentIndex = index; // Update the selected index
             });
           },
           items: [
-            _createNavigationBarItem(FontAwesomeIcons.house, 0), // Home icon
-            _createNavigationBarItem(FontAwesomeIcons.heart, 1),
-            _createNavigationBarItem(FontAwesomeIcons.bell, 2),
-            _createNavigationBarItem(FontAwesomeIcons.user, 3),
+            _createNavigationBarItem(CupertinoIcons.house,
+                CupertinoIcons.house_fill, 0), // Home icon
+            _createNavigationBarItem(
+                CupertinoIcons.heart, CupertinoIcons.heart_solid, 1),
+            _createNavigationBarItem(
+                CupertinoIcons.bell, CupertinoIcons.bell_fill, 2),
+            _createNavigationBarItem(
+                CupertinoIcons.person, CupertinoIcons.person_fill, 3),
           ],
         ),
       ),

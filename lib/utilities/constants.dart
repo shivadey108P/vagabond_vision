@@ -65,7 +65,7 @@ const kNormal = TextStyle(
 
 const kLocationText = TextStyle(
     fontFamily: 'TiltNeon',
-    fontSize: 18.0,
+    fontSize: 15.0,
     fontWeight: FontWeight.w500,
     color: kDeepOrangeAccent);
 

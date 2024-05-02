@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icon(
                   Icons.location_on,
                   color: kDeepOrangeAccent,
-                  size: 25,
+                  size: 15,
                 ),
                 SizedBox(width: 5),
                 Text(
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 15),
             TextField(
               decoration: InputDecoration(
                 filled: true,
@@ -122,9 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 prefixIcon: const Icon(
                   Icons.search,
                   color: kDeepOrangeAccent,
+                  size: 24,
                 ),
                 suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: const EdgeInsets.only(right: 5.0),
                   child: Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
@@ -132,19 +133,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: const Icon(
                       Icons.filter_alt_outlined,
-                      size: 25,
+                      size: 24,
                       color: Colors.white,
                     ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             const Text(
               'Discover Places',
               style: kHeading,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             SizedBox(
               height: 50,
               child: ListView.builder(
