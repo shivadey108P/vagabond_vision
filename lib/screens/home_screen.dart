@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late User loggedInUser;
 
   final List<Map<String, dynamic>> items = [
-    {'icon': Icons.view_cozy_outlined, 'text': 'All'},
+    {'icon': Icons.widgets, 'text': 'All'},
     {'icon': Icons.apartment, 'text': 'Site'},
     {'icon': Icons.hotel, 'text': 'Hotels'},
     {'icon': Icons.restaurant, 'text': 'Restaurants'},
@@ -181,12 +181,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Icon(
                               items[index]['icon'],
+                              size: 18,
                               color:
                                   isSelected ? Colors.white : kDeepOrangeAccent,
+                            ),
+                            const SizedBox(
+                              width: 5,
                             ),
                             Text(
                               items[index]['text'],
                               style: TextStyle(
+                                fontSize: 18,
                                 color: isSelected
                                     ? Colors.white
                                     : kDeepOrangeAccent,
