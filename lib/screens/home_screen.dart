@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vagabond_vision/components/service_card.dart';
 import 'package:vagabond_vision/data/places.dart';
 import 'package:vagabond_vision/screens/user_screen.dart';
 import 'package:vagabond_vision/utilities/constants.dart';
@@ -298,6 +299,58 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'People Liked',
+                  style: kHeading,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    children: [
+                      Text(
+                        'View all',
+                        style: kLocationText,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: kDeepOrangeAccent,
+                        size: 18,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ServiceCard(
+              imageURL:
+                  'https://10619-2.s.cdn12.com/reviews/original/515375.jpg',
+              serviceName: 'Indian Accent',
+              serviceLocation: 'New Delhi, India',
+              iconData: Icons.restaurant,
+              serviceType: 'Restaurant',
+              onTap: () {},
+            ),
+            ServiceCard(
+                imageURL:
+                    'https://img.freepik.com/free-photo/mesmerizing-shot-famous-historic-taj-mahal-agra-india_181624-16028.jpg',
+                serviceName: 'Taj Mahal',
+                serviceLocation: 'Agra, UP, India',
+                iconData: Icons.fort,
+                serviceType: 'Historic Places',
+                onTap: () {}),
           ],
         ),
       ),

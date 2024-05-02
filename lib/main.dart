@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:vagabond_vision/utilities/constants.dart';
 
 import 'firebase_options.dart';
 import 'screens/bottom_navigation_screen.dart';
@@ -30,8 +33,9 @@ class VagabondVision extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xfffaf9f9),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: OnBoardingScreen.id,
+      initialRoute: '/',
       routes: {
+        '/': (context) => AuthCheck(),
         OnBoardingScreen.id: (context) => OnBoardingScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         SignupScreen.id: (context) => SignupScreen(),
@@ -42,6 +46,34 @@ class VagabondVision extends StatelessWidget {
         FavouriteScreen.id: (context) => FavouriteScreen(),
         NotificationScreen.id: (context) => NotificationScreen(),
       },
+    );
+  }
+}
+
+class AuthCheck extends StatelessWidget {
+  const AuthCheck({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser; // Get the current user
+
+    if (user != null) {
+      // If the user is logged in, navigate to the main screen
+      Future.microtask(
+          () => Navigator.pushReplacementNamed(context, BottomNavigation.id));
+    } else {
+      // If not logged in, navigate to the login screen
+      Future.microtask(
+          () => Navigator.pushReplacementNamed(context, OnBoardingScreen.id));
+    }
+
+    return const Scaffold(
+      body: Center(
+        child: SpinKitChasingDots(
+          color: kDeepOrangeAccent,
+          size: 100,
+        ),
+      ),
     );
   }
 }

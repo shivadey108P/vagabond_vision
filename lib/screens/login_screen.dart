@@ -25,31 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String password = '';
   bool showText = false;
 
-  // Variables to hold error messages
-  String? emailError;
-  String? passwordError;
-
-  // Function to validate the email and password
-  bool validateInputs() {
-    bool isValid = true;
-
-    setState(() {
-      if (email.isEmpty || !RegExp(r'^\S+@\S+\.\S+$').hasMatch(email)) {
-        emailError = 'Please enter a valid email address.';
-        isValid = false;
-      }
-
-      if (password.isEmpty) {
-        passwordError = 'Please enter your password.';
-        isValid = false;
-      } else if (password.length < 6) {
-        passwordError = 'Password must be at least 6 characters long.';
-        isValid = false;
-      }
-    });
-
-    return isValid;
-  }
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,95 +34,107 @@ class _LoginScreenState extends State<LoginScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 70),
-                const Text(
-                  "Welcome Back! 😍",
-                  style: kOnBoardingHeading,
-                ),
-                const SizedBox(height: 15),
-                const Text(
-                  "Please enter your email and password to login.",
-                  style: kWelcomeMessage,
-                ),
-                const SizedBox(height: 50),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: TextField(
-                    onChanged: (value) {
-                      email = value;
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                    style: kTextField,
-                    decoration: textFieldDecor(
-                      "Email Address",
-                      Icon(
-                        FontAwesomeIcons.envelope,
-                        color: emailError == null ? Colors.black : Colors.red,
-                      ),
-                      errorText: emailError,
-                    ),
+          child: Form(
+            key: formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 70),
+                  const Text(
+                    "Welcome Back! 😍",
+                    style: kOnBoardingHeading,
                   ),
-                ),
-                const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: TextField(
-                    style: kTextField,
-                    obscureText: showText,
-                    onChanged: (value) {
-                      password = value;
-                    },
-                    decoration: textFieldDecor(
-                      "Your Password",
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            showText = !showText;
-                          });
-                        },
-                        child: showText
-                            ? const Icon(FontAwesomeIcons.eyeSlash)
-                            : const Icon(FontAwesomeIcons.eye),
-                      ),
-                      errorText: passwordError,
-                    ),
+                  const SizedBox(height: 15),
+                  const Text(
+                    "Please enter your email and password to login.",
+                    style: kWelcomeMessage,
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 35.0, top: 8),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Fluttertoast.showToast(
-                          msg: "Forgot Password?",
-                        );
+                  const SizedBox(height: 50),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter an email address.';
+                        } else if (!RegExp(r'^\S+@\S+\.\S+$').hasMatch(value)) {
+                          return 'Please enter a valid email address.';
+                        }
+                        return null;
                       },
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: kDeepOrangeAccent,
-                          fontSize: 16,
+                      onChanged: (value) {
+                        email = value;
+                      },
+                      keyboardType: TextInputType.emailAddress,
+                      style: kTextField,
+                      decoration: textFieldDecor(
+                        "Email Address",
+                        const Icon(
+                          FontAwesomeIcons.envelope,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 30),
-                RoundedRectButton(
-                  textInput: 'Login',
-                  onPressed: () {
-                    setState(() {
-                      showSpinner = true;
-                    });
-
-                    if (validateInputs()) {
-                      try {
+                  const SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password.';
+                        } else if (value.length < 6) {
+                          return 'Password must be at least 6 characters long.';
+                        }
+                        return null;
+                      },
+                      style: kTextField,
+                      obscureText: showText,
+                      onChanged: (value) {
+                        password = value;
+                      },
+                      decoration: textFieldDecor(
+                        "Your Password",
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showText = !showText;
+                            });
+                          },
+                          child: showText
+                              ? const Icon(FontAwesomeIcons.eyeSlash)
+                              : const Icon(FontAwesomeIcons.eye),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 35.0, top: 8),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          Fluttertoast.showToast(
+                            msg: "Forgot Password?",
+                          );
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                            color: kDeepOrangeAccent,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  RoundedRectButton(
+                    textInput: 'Login',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
                         setState(() {
                           showSpinner = true;
                         });
@@ -158,102 +146,83 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushNamed(context, BottomNavigation.id);
                         }).catchError((e) {
                           if (e is FirebaseAuthException) {
-                            Fluttertoast.showToast(
-                              msg: "Error: ${e.code}",
-                              backgroundColor: Colors.red,
-                            );
+                            Fluttertoast.showToast(msg: "Error: ${e.message}");
                           }
+                        }).whenComplete(() {
+                          setState(() {
+                            showSpinner = false;
+                          });
                         });
-
-                        setState(() {
-                          showSpinner = false;
-                        });
-                      } on FirebaseAuthException catch (error) {
-                        if (error.code == 'email-already-in-use') {
-                          Fluttertoast.showToast(msg: 'User already exists');
-                        } else if (error.code == 'network-request-failed') {
-                          Fluttertoast.showToast(msg: 'Network error');
-                        } else {
-                          Fluttertoast.showToast(msg: error.toString());
-                        }
-
-                        setState(() {
-                          showSpinner = false;
-                        });
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: "Please enter correct values");
                       }
-                    } else {
-                      setState(() {
-                        showSpinner = false;
-                      });
-                      Fluttertoast.showToast(
-                        msg: 'Please correct the errors before login.',
-                        backgroundColor: Colors.red,
-                      );
-                    }
-                  },
-                  colour: kDeepOrangeAccent,
-                ),
-                const SizedBox(height: 20),
-                const Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey,
-                        thickness: 1,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        'or',
-                        style: TextStyle(
+                    },
+                    colour: kDeepOrangeAccent,
+                  ),
+                  const SizedBox(height: 20),
+                  const Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
                           color: Colors.grey,
-                          fontWeight: FontWeight.bold,
+                          thickness: 1,
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey,
-                        thickness: 1,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'or',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                GoogleButton(
-                  onPressed: () {
-                    Fluttertoast.showToast(msg: "Google Login Not Implemented");
-                  },
-                ),
-                const SizedBox(height: 160),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const Text(
-                      "Don't have an account?",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 72, 71, 71),
-                        fontSize: 15,
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey,
+                          thickness: 1,
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, SignupScreen.id);
-                      },
-                      child: const Text(
-                        "Sign Up",
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  GoogleButton(
+                    onPressed: () {
+                      Fluttertoast.showToast(
+                          msg: "Google Login Not Implemented");
+                    },
+                  ),
+                  const SizedBox(height: 160),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Text(
+                        "Don't have an account?",
                         style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 72, 71, 71),
                           fontSize: 15,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, SignupScreen.id);
+                        },
+                        child: const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

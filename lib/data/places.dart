@@ -39,6 +39,17 @@ class Places {
               "Fuji is the tallest peak in Japan, the result of volcanic activity that began approximately 100,000 years ago. Today, Mt. Fuji and the surrounding area are a popular recreational destination for hiking, camping and relaxation."),
       Place(
         imageUrl:
+            'https://img.freepik.com/free-photo/mesmerizing-shot-famous-historic-taj-mahal-agra-india_181624-16028.jpg',
+        name: 'Taj Mahal',
+        location: 'Agra, UP, India',
+        rating: 4.3,
+        reviews: 87,
+        imageUrl2: '',
+        imageUrl3: '',
+        intro: '',
+      ),
+      Place(
+        imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Charminar_Hyderabad_1.jpg/544px-Charminar_Hyderabad_1.jpg',
         imageUrl2: '',
         imageUrl3: '',
@@ -118,6 +129,17 @@ class Places {
         location: 'Hyderabad, Telangana, India',
         rating: 3.9,
         reviews: 50,
+        imageUrl2: '',
+        imageUrl3: '',
+        intro: '',
+      ),
+      Place(
+        imageUrl:
+            'https://img.freepik.com/free-photo/mesmerizing-shot-famous-historic-taj-mahal-agra-india_181624-16028.jpg',
+        name: 'Taj Mahal',
+        location: 'Agra, UP, India',
+        rating: 4.3,
+        reviews: 87,
         imageUrl2: '',
         imageUrl3: '',
         intro: '',

@@ -9,6 +9,7 @@ class ServiceCard extends StatelessWidget {
   final String serviceLocation;
   final IconData iconData;
   final String serviceType;
+  final VoidCallback onTap;
 
   const ServiceCard({
     super.key,
@@ -17,6 +18,7 @@ class ServiceCard extends StatelessWidget {
     required this.serviceLocation,
     required this.iconData,
     required this.serviceType,
+    required this.onTap,
   });
 
   @override
@@ -26,13 +28,13 @@ class ServiceCard extends StatelessWidget {
       widthType = 90;
     } else if (serviceType == 'Resort') {
       widthType = 70;
+    } else if (serviceType == 'Historic Places') {
+      widthType = 120;
     }
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(
-            left: 10,
-            right: 10,
             top: 2,
             bottom: 2,
           ),
@@ -60,13 +62,13 @@ class ServiceCard extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Column(
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -108,95 +110,93 @@ class ServiceCard extends StatelessWidget {
                           )
                         ],
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(
+                              Icons.location_pin,
+                              size: 15,
+                              color: kGreyColor,
+                            ),
+                            Text(
+                              serviceLocation,
+                              style: kServiceLocationText,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
                         children: [
-                          const Icon(
-                            Icons.location_pin,
-                            size: 15,
-                            color: kGreyColor,
+                          const Icon(Icons.star, color: Colors.amber, size: 12),
+                          const SizedBox(width: 3),
+                          const Text(
+                            '4.5',
+                            style: TextStyle(
+                                fontFamily: 'TiltNeon',
+                                fontSize: 12,
+                                color: Colors.black),
                           ),
-                          Text(
-                            serviceLocation,
-                            style: kServiceLocationText,
+                          const SizedBox(width: 1),
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 1),
+                                Text(
+                                  '|',
+                                  style: TextStyle(
+                                    color: kGreyColor,
+                                  ),
+                                ),
+                                SizedBox(width: 2),
+                                Text(
+                                  '36 Reviews',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'TiltNeon',
+                                      color: kGreyColor),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(Icons.star, color: Colors.amber, size: 12),
-                        const SizedBox(width: 3),
-                        const Text(
-                          '4.5',
-                          style: TextStyle(
-                              fontFamily: 'TiltNeon',
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Row(
+                        children: [
+                          Text(
+                            'Rs. 4000',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
                               fontSize: 12,
-                              color: Colors.black),
-                        ),
-                        const SizedBox(width: 1),
-                        GestureDetector(
-                          onTap: () {},
-                          child: const Row(
-                            children: [
-                              SizedBox(width: 1),
-                              Text(
-                                '|',
-                                style: TextStyle(
-                                  color: kGreyColor,
-                                ),
-                              ),
-                              SizedBox(width: 2),
-                              Text(
-                                '36 Reviews',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'TiltNeon',
-                                    color: kGreyColor),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 2),
-                        const Text(
-                          '|',
-                          style: TextStyle(
-                            color: kGreyColor,
-                            fontSize: 12,
+                          Text(
+                            '/night ',
+                            style: TextStyle(
+                              color: kGreyColor,
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 2),
-                        const Text(
-                          'Rs. 4000',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const Text(
-                          '/night ',
-                          style: TextStyle(
-                            color: kGreyColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: onTap,
                   child: Container(
                     margin: const EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(

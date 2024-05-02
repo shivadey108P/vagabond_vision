@@ -221,37 +221,41 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     fontSize: 20),
               ),
             ),
-            const ServiceCard(
+            ServiceCard(
               imageURL:
                   'https://www.agoda.com/wp-content/uploads/2021/03/Ubuya-best-Fujikawaguchiko-hotels-where-to-stay-ryokans-onsen-resorts.jpg',
               serviceName: 'Ubuya Resort',
               serviceLocation: 'Yamanashi, Japan',
               iconData: Icons.apartment,
               serviceType: 'Resort',
+              onTap: () {},
             ),
-            const ServiceCard(
+            ServiceCard(
               imageURL:
                   'https://savorjapan.com/gg/content_image/t0093_030_20180420032213.jpg',
               serviceName: 'Fuji Tempura Idaten',
               serviceLocation: 'Yamanashi, Japan',
               iconData: Icons.restaurant,
               serviceType: 'Restaurant',
+              onTap: () {},
             ),
-            const ServiceCard(
+            ServiceCard(
               imageURL:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvFPrUA9q-DW96GA_Jv-NfGsK-mQ0qXxs5boZ94PUOSw&s',
               serviceName: 'Narusawa Ice Cave',
               serviceLocation: 'Yamanashi, Japan',
               iconData: Icons.map,
               serviceType: 'Cave',
+              onTap: () {},
             ),
-            const ServiceCard(
+            ServiceCard(
               imageURL:
                   'https://www.agoda.com/wp-content/uploads/2021/03/Lake-Kawaguchi-Fujikawaguchiko-attractions-Japan.jpg',
               serviceName: 'Lake Kawaguchiko',
               serviceLocation: 'Yamanashi, Japan',
               iconData: Icons.kayaking,
               serviceType: 'Lake',
+              onTap: () {},
             ),
           ],
         ),
