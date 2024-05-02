@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '/utilities/constants.dart';
@@ -200,11 +199,12 @@ class ServiceCard extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          width: 2,
-                          color: CupertinoColors.systemGrey3,
-                        )),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        width: 2,
+                        color: const Color(0xffe7e7ef),
+                      ),
+                    ),
                     height: 70,
                     width: 30,
                     child: const Icon(

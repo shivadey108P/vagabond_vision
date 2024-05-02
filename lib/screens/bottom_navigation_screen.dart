@@ -30,7 +30,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
       label: '',
       icon: Icon(
         currentIndex == index ? icon2 : icon,
-        color: currentIndex == index ? kDeepOrangeAccent : Colors.black, //
+        color: currentIndex == index
+            ? kDeepOrangeAccent
+            : const Color(0xff818f9c), //
       ),
     );
   }
