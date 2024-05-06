@@ -327,7 +327,7 @@ class Places {
         imageUrl3:
             'https://focus.hidubai.com/content/images/size/w1000/2022/11/BurjAlArab-Cover.jpg',
         name: 'Burj Al Arab',
-        location: 'Umm Suqeim 3 - Dubai',
+        location: 'Umm Suqeim 3-Dubai',
         rating: 5.0,
         reviews: 28901,
         intro:
@@ -362,18 +362,20 @@ class Places {
         longitude: 2.3042,
       ),
       Place(
-        serviceCategory: [],
-        serviceImage: [],
-        serviceName: [],
-        servicePrice: [],
-        servicePriceTime: [],
-        serviceRating: [],
-        serviceReviews: [],
+        serviceCategory: ['Theater'],
+        serviceImage: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwX22zjMT0GWfH1qHmocTDcoO7Kq2D00W-ltexku-RRw&s'
+        ],
+        serviceName: ['Sphere Shows'],
+        servicePrice: ['15000'],
+        servicePriceTime: ['day/night'],
+        serviceRating: [4.8],
+        serviceReviews: [5903],
         category: 'Theater',
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Sphere-exosphere-on-Jan-26-2024.jpg/1200px-Sphere-exosphere-on-Jan-26-2024.jpg',
         name: 'Sphere',
-        location: 'Las Vegas , United States',
+        location: 'Las Vegas,US',
         rating: 4.6,
         reviews: 12000,
         imageUrl2:
@@ -382,23 +384,26 @@ class Places {
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgCCioPrcWa4Pe0ey0mXODvFvw2x9MKDJrckVAHKz_UQ&s',
         intro:
             '"Spher" is a state-of-the-art entertainment venue located in Las Vegas. Its a revolutionary concept that combines cutting-edge technology with live performances, creating immersive experiences for visitors. The venue features a spherical design with advanced audiovisual capabilities, allowing for stunning visual displays and interactive performances.',
-        serviceLocation: ['Las Vegas , United States'],
+        serviceLocation: ['Las Vegas , US'],
         latitude: 36.1716,
         longitude: 115.1391,
       ),
       Place(
-        serviceCategory: [],
-        serviceImage: [],
-        serviceName: [],
-        servicePrice: [],
-        servicePriceTime: [],
-        serviceRating: [],
-        serviceReviews: [],
+        serviceCategory: ['Aquarium', 'Site'],
+        serviceImage: [
+          'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/5e/e3/7d/20190430-163110-largejpg.jpg?w=1200&h=-1&s=1',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrFkCGAZobTD3XzCSNTJNcC4nrn_QmYCYC3tuBGeWfsA&s'
+        ],
+        serviceName: ['Aquarium', 'Ice House'],
+        servicePrice: ['250', '450'],
+        servicePriceTime: ['day', 'day'],
+        serviceRating: [4.5, 4.6],
+        serviceReviews: [750, 923],
         category: 'Beaches',
         imageUrl:
             'https://files.prokerala.com/news/photos/imgs/800w/people-throng-marina-beach-in-chennai-on-tuesday-1511697.jpg',
         name: 'Marina Beach',
-        location: 'Chennai , India',
+        location: 'Chennai,India',
         rating: 4.3,
         reviews: 1000,
         imageUrl2:
@@ -407,18 +412,21 @@ class Places {
             'https://chennaitourism.travel/images/places-to-visit/headers/marina-beach-chennai-tourism-entry-fee-timings-holidays-reviews-header.jpg',
         intro:
             'Chennai Marina Beach is a famous urban beach situated along the Bay of Bengal in Chennai, India. Stretching over 13 kilometers, it is one of the longest urban beaches in the world.',
-        serviceLocation: [],
+        serviceLocation: ['Marina , Chennai', 'Marina , Chennai'],
         latitude: 13.0500,
         longitude: 80.2824,
       ),
       Place(
-        serviceCategory: [],
-        serviceImage: [],
-        serviceName: [],
-        servicePrice: [],
-        servicePriceTime: [],
-        serviceRating: [],
-        serviceReviews: [],
+        serviceCategory: ['Rowing', 'Club'],
+        serviceImage: [
+          'https://cdn.getyourguide.com/img/tour/8b8f8cd1def980b9c156678ce5ddf5b5bbe2e8c448098b456d306c0ed42dad93.jpg/98.jpg',
+          'https://cdn.getyourguide.com/img/tour/0d4f8f5cd373063cf54b8673bd621a916d71c7ffa57cb3a27517560dbbfb2eb4.jpg/145.jpg'
+        ],
+        serviceName: ['Kayaking', 'Night Club'],
+        servicePrice: ['2500', '1500'],
+        servicePriceTime: ['day', 'night'],
+        serviceRating: [4.3, 4.9],
+        serviceReviews: [249, 5900],
         category: 'Beaches',
         imageUrl:
             'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29hJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D',
@@ -432,23 +440,25 @@ class Places {
             'https://images.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/08/16/Pictures/_dbca9ffa-a138-11e8-9345-8d51f8ed9678.jpg',
         intro:
             'Goa, located on the western coast of India, is renowned for its pristine beaches that attract tourists from around the world. These beaches offer a diverse range of experiences, from vibrant party scenes to tranquil retreats.',
-        serviceLocation: [],
+        serviceLocation: ['Goa , India', 'Goa , India'],
         latitude: 15.5412,
         longitude: 73.7577,
       ),
       Place(
-        serviceCategory: [],
-        serviceImage: [],
-        serviceName: [],
-        servicePrice: [],
-        servicePriceTime: [],
-        serviceRating: [],
-        serviceReviews: [],
+        serviceCategory: ['Mountains'],
+        serviceImage: [
+          'https://cdn.unenvironment.org/s3fs-public/inline-images/1.jpg?VersionId=null'
+        ],
+        serviceName: ['Climbing'],
+        servicePrice: ['2900'],
+        servicePriceTime: ['day'],
+        serviceRating: [4.7],
+        serviceReviews: [92],
         category: 'Mountains',
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg/1200px-Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg',
         name: 'Mount Everest',
-        location: 'Nepal,Tibet, China',
+        location: 'Himalayas,India',
         rating: 4.8,
         reviews: 12000,
         imageUrl2:
@@ -456,8 +466,8 @@ class Places {
         imageUrl3:
             'https://media.tacdn.com/media/attractions-splice-spp-674x446/10/5c/8f/5d.jpg',
         intro:
-            "Mount Everest, at 8,848 meters (29,029 feet), is the world's tallest peak, located in the Himalayas on the Nepal-Tibet border. Known as 'Sagarmatha' in Nepal and 'Chomolungma' in Tibet, it's a renowned challenge for climbers, attracting adventurers worldwide.",
-        serviceLocation: [],
+            'Mount Everest, standing at 8,848.86 meters (29,031.7 feet) above sea level, is the highest peak on Earth and a symbol of human endeavor and exploration. Located in the Himalayas on the border between Nepal and China, Everest has captivated adventurers and mountaineers for centuries.',
+        serviceLocation: ['Himalayas,India'],
         latitude: 27.9881,
         longitude: 86.9250,
       ),
@@ -497,7 +507,7 @@ class Places {
         category: 'Forest',
         imageUrl:
             'https://qph.cf2.quoracdn.net/main-qimg-c87f361f8aa76bb9a88dd6bd2ef26635-lq',
-        name: 'Northeastern coastal forests',
+        name: 'Northeastern coastal',
         location: 'India',
         rating: 3.9,
         reviews: 600,

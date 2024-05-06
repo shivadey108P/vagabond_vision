@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vagabond_vision/screens/places_screen.dart';
 import 'package:vagabond_vision/utilities/constants.dart';
 
 import '../components/favourite_cards.dart';
@@ -52,6 +53,36 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               setState(() {
                 FavoriteManager().removeFavorite(favorite['name']);
               });
+            },
+            goToPlacesScreen: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlaceScreen(
+                    imageUrl: favorite['imageUrl'],
+                    imageUrl2: favorite['imageUrl2'],
+                    imageUrl3: favorite['imageUrl3'],
+                    name: favorite['name'],
+                    location: favorite['location'],
+                    rating: favorite['rating'],
+                    reviews: favorite['reviews'],
+                    intro: favorite['intro'],
+                    category: favorite['category'],
+                    serviceImage: favorite['serviceImage'],
+                    serviceName: favorite['serviceName'],
+                    serviceRating: favorite['serviceRating'],
+                    serviceReviews: favorite['serviceReviews'],
+                    servicePrice: favorite['servicePrice'],
+                    servicePriceTime: favorite['servicePriceTime'],
+                    serviceLocation: favorite['serviceLocation'],
+                    latitude: favorite['latitude'],
+                    longitude: favorite['longitude'],
+                    userLatitude: favorite['userLatitude'],
+                    userLongitude: favorite['userLongitude'],
+                    serviceCategories: favorite['serviceCategory'],
+                  ),
+                ),
+              );
             },
           );
         },

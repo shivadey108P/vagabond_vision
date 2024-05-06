@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -161,6 +162,21 @@ class _PlaceScreenState extends State<PlaceScreen> {
         'rating': widget.rating,
         'reviews': widget.reviews,
         'name': widget.name,
+        'serviceName': widget.serviceName,
+        'serviceCategory': widget.serviceCategories,
+        'serviceImage': widget.serviceImage,
+        'servicePrice': widget.servicePrice,
+        'servicePriceTime': widget.servicePriceTime,
+        'serviceLocation': widget.serviceLocation,
+        'serviceRating': widget.serviceRating,
+        'serviceReviews': widget.serviceReviews,
+        'imageUrl2': widget.imageUrl2,
+        'imageUrl3': widget.imageUrl3,
+        'latitude': widget.latitude,
+        'longitude': widget.longitude,
+        'userLatitude': widget.userLatitude,
+        'userLongitude': widget.userLongitude,
+        'intro': widget.intro,
       });
       Fluttertoast.showToast(msg: 'Added to Favourites');
     }
@@ -219,8 +235,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   ),
                 ),
                 Positioned(
-                  left: 330,
-                  top: 445,
+                  left: 310,
+                  top: 400,
                   child: GestureDetector(
                     onTap: toggleFavorite,
                     child: Container(
@@ -241,12 +257,12 @@ class _PlaceScreenState extends State<PlaceScreen> {
                       child: Center(
                         child: favLike
                             ? const Icon(
-                                Icons.favorite,
+                                CupertinoIcons.heart_fill,
                                 color: kDeepOrangeAccent,
                                 size: 45,
                               )
                             : const Icon(
-                                Icons.favorite_outline,
+                                CupertinoIcons.heart,
                                 color: kDeepOrangeAccent,
                                 size: 45,
                               ),

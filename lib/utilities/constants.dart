@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const kDeepOrangeAccent = Color(0xffde7254);
 const kWhiteCanvas = Color(0xfffaf9f9);
@@ -25,7 +26,7 @@ IconData getCategoryIcon(String category) {
     return Icons.fort;
   } else if (category == 'Parks') {
     return Icons.park;
-  } else if (category == 'Mountain') {
+  } else if (category == 'Mountains') {
     return Icons.hiking;
   } else if (category == 'Forest') {
     return Icons.forest;
@@ -39,6 +40,12 @@ IconData getCategoryIcon(String category) {
     return Icons.sports_cricket;
   } else if (category == 'Food Court') {
     return Icons.fastfood;
+  } else if (category == 'Club') {
+    return Icons.wine_bar;
+  } else if (category == 'Rowing') {
+    return Icons.rowing;
+  } else if (category == 'Aquarium') {
+    return FontAwesomeIcons.fish;
   }
   throw ArgumentError('Unknown category: $category');
 }

@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String updatedUserLocation = '';
   String selectedCategory = 'All';
   late List<Place> filteredPlaces;
+  late List<Place> peopleLikedPlaces;
   double? latitude;
   double? longitude;
   String gender = '';
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
     getCurrentUser();
     _getUserLocation();
     _updateFilteredPlaces();
+    _updatePeopleLikedPlaces();
   }
 
   void getCurrentUser() async {
@@ -135,11 +137,25 @@ class _HomeScreenState extends State<HomeScreen> {
     filteredPlaces = Places.placeData['All']?.where((place) {
           // If selectedCategory is 'All', include places based on the user's country
           if (selectedCategory == 'All') {
-            return place.location
-                .contains(userCountry); // Ensure place is in the same country
+            return (place.location.contains(userCountry) ||
+                place.name.contains(
+                    userCountry)); // Ensure place is in the same country
           } else {
             return place.category == selectedCategory &&
                 place.location.contains(userCountry);
+          }
+        }).toList() ??
+        [];
+  }
+
+  void _updatePeopleLikedPlaces() {
+    peopleLikedPlaces = Places.placeData['All']?.where((place) {
+          // If selectedCategory is 'All', include places based on the user's country
+          if (selectedCategory == 'All') {
+            return (place.reviews >= 10000 &&
+                place.rating > 3.5); // Ensure place is in the same country
+          } else {
+            return place.reviews >= 300 && place.rating > 4.5;
           }
         }).toList() ??
         [];
@@ -227,7 +243,11 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 15),
             TextField(
               onChanged: (value) {
-                updatedUserLocation = value;
+                if (value != '') {
+                  updatedUserLocation = value;
+                } else {
+                  Fluttertoast.showToast(msg: 'Please enter a valid location');
+                }
               },
               decoration: InputDecoration(
                 filled: true,
@@ -491,7 +511,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'People Liked',
+                  'People Liked Worldwide',
                   style: kHeading,
                 ),
                 GestureDetector(
@@ -515,34 +535,62 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            ServiceCard(
-              imageURL:
-                  'https://10619-2.s.cdn12.com/reviews/original/515375.jpg',
-              serviceName: 'Indian Accent',
-              serviceLocation: 'New Delhi, India',
-              iconData: Icons.restaurant,
-              serviceType: 'Restaurant',
-              onTap: () {},
-              servicePrice: '6000',
-              servicePriceTime: 'day/night',
-              rating: 4.2,
-              reviews: 24,
-            ),
-            ServiceCard(
-              imageURL:
-                  'https://img.freepik.com/free-photo/mesmerizing-shot-famous-historic-taj-mahal-agra-india_181624-16028.jpg',
-              serviceName: 'Taj Mahal',
-              serviceLocation: 'Agra, UP, India',
-              iconData: Icons.fort,
-              serviceType: 'Historic Places',
-              onTap: () {},
-              servicePrice: '2500',
-              servicePriceTime: 'entry',
-              rating: 4.6,
-              reviews: 1531,
+            SizedBox(
+              height: 300,
+              child: peopleLikedPlaces.isNotEmpty
+                  ? ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        final place = peopleLikedPlaces[index];
+                        return ServiceCard(
+                          imageURL: place.imageUrl,
+                          serviceName: place.name,
+                          serviceLocation: place.location,
+                          iconData: getCategoryIcon(place.category),
+                          serviceType: place.category,
+                          servicePrice: place.servicePrice.isNotEmpty
+                              ? place.servicePrice[0]
+                              : 'N/A',
+                          servicePriceTime: place.servicePriceTime.isNotEmpty
+                              ? place.servicePriceTime[0]
+                              : 'N/A',
+                          rating: place.rating,
+                          reviews: place.reviews,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PlaceScreen(
+                                  imageUrl: place.imageUrl,
+                                  imageUrl2: place.imageUrl2,
+                                  imageUrl3: place.imageUrl3,
+                                  name: place.name,
+                                  location: place.location,
+                                  rating: place.rating,
+                                  reviews: place.reviews,
+                                  intro: place.intro,
+                                  category: place.category,
+                                  serviceImage: place.serviceImage,
+                                  serviceName: place.serviceName,
+                                  serviceRating: place.serviceRating,
+                                  serviceReviews: place.serviceReviews,
+                                  servicePrice: place.servicePrice,
+                                  servicePriceTime: place.servicePriceTime,
+                                  serviceLocation: place.serviceLocation,
+                                  latitude: place.latitude,
+                                  longitude: place.longitude,
+                                  userLatitude: latitude,
+                                  userLongitude: longitude,
+                                  serviceCategories: place.serviceCategory,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    )
+                  : const Center(child: Text("No popular places found")),
             ),
           ],
         ),
