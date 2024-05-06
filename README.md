@@ -62,5 +62,5 @@ Contributions are welcome! If you'd like to contribute to the project, please op
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ### Additional Resources
-Project Documentation
-Video Recordings <!--Yet to add links-->
+1. Project Documentation
+2. [Video Recordings](https://drive.google.com/file/d/1_0ZPFXp6MQNerKrKEUXMM4Bu3og3aO4C/view?usp=sharing) <!--Yet to add links-->
