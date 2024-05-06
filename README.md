@@ -2,7 +2,7 @@
 
 Vagabond Vision is a Flutter-based mobile application that allows users to discover and explore the best travel destinations, including restaurants, hotels, sites, beaches, and more. It utilizes Firebase for authentication, notification management, and Firestore for storing user data.
 
-![App Screenshot](./images/img.png) 
+![App Screenshot](./images/img.gif) 
 
 ## Table of Contents
 - [Description](#description)
