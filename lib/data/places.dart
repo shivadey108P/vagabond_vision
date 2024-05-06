@@ -336,6 +336,256 @@ class Places {
         longitude: 55.1852,
         serviceCategory: ['Hotels'],
       ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Restaurants',
+        imageUrl:
+            'https://media.cntraveler.com/photos/5492efb2860c74c1162cb41a/master/pass/plaza-athenee-restaurant-paris.jpg',
+        name: 'Alain Ducasse',
+        location: 'Paris, France',
+        rating: 5.0,
+        reviews: 29000,
+        imageUrl2:
+            'https://www.luxeat.com/wp-content/uploads/2020/12/6a00df351eb58e8834011570a45ad6970b.jpg',
+        imageUrl3:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0ZLZBSAUZQbpYEumHxhEIKKBOefElRk5YQefDvTthsQ&s',
+        intro:
+            'Alain Ducasse is a renowned French chef and restaurateur with an illustrious career spanning decades. He is celebrated for his innovative culinary techniques, dedication to high-quality ingredients, and commitment to showcasing the diversity of French cuisine. Ducasse has earned numerous accolades, including multiple Michelin stars across his restaurants worldwide. He is known for his culinary empire, which includes acclaimed restaurants in cities like Paris, London, New York, and Tokyo, each offering a unique dining experience reflecting his culinary vision and expertise.',
+        serviceLocation: [],
+        latitude: 48.8664,
+        longitude: 2.3042,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Theater',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Sphere-exosphere-on-Jan-26-2024.jpg/1200px-Sphere-exosphere-on-Jan-26-2024.jpg',
+        name: 'Sphere',
+        location: 'Las Vegas , United States',
+        rating: 4.6,
+        reviews: 12000,
+        imageUrl2:
+            'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iEnJsg9krryg/v2/-1x-1.jpg',
+        imageUrl3:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgCCioPrcWa4Pe0ey0mXODvFvw2x9MKDJrckVAHKz_UQ&s',
+        intro:
+            '"Spher" is a state-of-the-art entertainment venue located in Las Vegas. Its a revolutionary concept that combines cutting-edge technology with live performances, creating immersive experiences for visitors. The venue features a spherical design with advanced audiovisual capabilities, allowing for stunning visual displays and interactive performances.',
+        serviceLocation: ['Las Vegas , United States'],
+        latitude: 36.1716,
+        longitude: 115.1391,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Beaches',
+        imageUrl:
+            'https://files.prokerala.com/news/photos/imgs/800w/people-throng-marina-beach-in-chennai-on-tuesday-1511697.jpg',
+        name: 'Marina Beach',
+        location: 'Chennai , India',
+        rating: 4.3,
+        reviews: 1000,
+        imageUrl2:
+            'https://upload.wikimedia.org/wikipedia/commons/e/e4/Sunrise_at_Chennai_Marina_beach.jpg',
+        imageUrl3:
+            'https://chennaitourism.travel/images/places-to-visit/headers/marina-beach-chennai-tourism-entry-fee-timings-holidays-reviews-header.jpg',
+        intro:
+            'Chennai Marina Beach is a famous urban beach situated along the Bay of Bengal in Chennai, India. Stretching over 13 kilometers, it is one of the longest urban beaches in the world.',
+        serviceLocation: [],
+        latitude: 13.0500,
+        longitude: 80.2824,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Beaches',
+        imageUrl:
+            'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29hJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D',
+        name: 'Goa Beach',
+        location: 'Goa , India',
+        rating: 4.8,
+        reviews: 12000,
+        imageUrl2:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsH6-Y-4G9JJF_iKc7e7tv54Drk_cv3L8Y-wxtHtqpWQ&s',
+        imageUrl3:
+            'https://images.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/08/16/Pictures/_dbca9ffa-a138-11e8-9345-8d51f8ed9678.jpg',
+        intro:
+            'Goa, located on the western coast of India, is renowned for its pristine beaches that attract tourists from around the world. These beaches offer a diverse range of experiences, from vibrant party scenes to tranquil retreats.',
+        serviceLocation: [],
+        latitude: 15.5412,
+        longitude: 73.7577,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Mountains',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg/1200px-Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg',
+        name: 'Mount Everest',
+        location: 'Nepal,Tibet, China',
+        rating: 4.8,
+        reviews: 12000,
+        imageUrl2:
+            'https://images.news18.com/ibnlive/uploads/2023/05/international-mount-everest-day-2023-16851806443x2.jpg?impolicy=website&width=640&height=480',
+        imageUrl3:
+            'https://media.tacdn.com/media/attractions-splice-spp-674x446/10/5c/8f/5d.jpg',
+        intro:
+            "Mount Everest, at 8,848 meters (29,029 feet), is the world's tallest peak, located in the Himalayas on the Nepal-Tibet border. Known as 'Sagarmatha' in Nepal and 'Chomolungma' in Tibet, it's a renowned challenge for climbers, attracting adventurers worldwide.",
+        serviceLocation: [],
+        latitude: 27.9881,
+        longitude: 86.9250,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Forest',
+        imageUrl:
+            'https://www.beautifulworld.com/wp-content/uploads/2016/10/amazon-rainforest.jpg',
+        name: 'The Amazon Rainforest',
+        location: 'South America',
+        rating: 4.4,
+        reviews: 900,
+        imageUrl2:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLb1J9L_8F2ECUSM62i5Vd4-eouTbqGnknRuKbfLqWWQ&s',
+        imageUrl3:
+            'https://cdn.britannica.com/31/130031-050-469B9571/stream-Amazon-Rainforest-Ecuador.jpg',
+        intro:
+            'The Amazon Rainforest is the largest tropical rainforest in the world, covering approximately 5.5 million square kilometers (2.1 million square miles) across nine South American countries, including Brazil, Peru, and Colombia.',
+        serviceLocation: [],
+        latitude: 27.9881,
+        longitude: 86.9250,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Forest',
+        imageUrl:
+            'https://qph.cf2.quoracdn.net/main-qimg-c87f361f8aa76bb9a88dd6bd2ef26635-lq',
+        name: 'Northeastern coastal forests',
+        location: 'India',
+        rating: 3.9,
+        reviews: 600,
+        imageUrl2:
+            'https://cdn.britannica.com/31/130031-050-469B9571/stream-Amazon-Rainforest-Ecuador.jpg',
+        imageUrl3:
+            'https://upload.wikimedia.org/wikipedia/commons/6/65/Posts_Brook_from_Norvin_Green_State_Forest_Lower_Trail.jpg',
+        intro:
+            'The Northeast Region of the United States is home to diverse forests that play a significant role in the regions ecology, economy, and culture. Stretching from Maine to Maryland, these forests encompass a variety of ecosystems, including temperate hardwood forests, boreal forests, and mixed coniferous-deciduous forests.',
+        serviceLocation: [],
+        latitude: 25.5736,
+        longitude: 93.2473,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Mountains',
+        imageUrl:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9VE_BeFz4aWCzotKSWg6vC8BoefclSqydFkBdsu-Z2w&s',
+        name: 'Kangchenjunga',
+        location: 'India',
+        rating: 4.5,
+        reviews: 800,
+        imageUrl2:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKI9Id6Wfu0OYcZNyt-MRadPG0oBS2ioMi4mnr_NtVEA&s',
+        imageUrl3:
+            'https://www.dutcheverest.nl/wp-content/uploads/2019/10/Kangchenjunga-3-1024x574.jpg',
+        intro:
+            'Kangchenjunga, standing at 8,586 meters (28,169 feet) above sea level, is the third highest mountain in the world. Located in the eastern Himalayas, on the border between Nepal and the Indian state of Sikkim, Kangchenjunga is renowned for its stunning beauty and challenging climbing routes.',
+        serviceLocation: [],
+        latitude: 27.7025,
+        longitude: 88.1475,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Theater',
+        imageUrl:
+            'https://assets.architecturaldigest.in/photos/641c19015dd72df91f3512d3/master/w_1600%2Cc_limit/Credits%2C%2520Justin%2520Nisly.jpg',
+        name: 'Maratha Mandir',
+        location: 'India',
+        rating: 4.5,
+        reviews: 8000,
+        imageUrl2:
+            'https://img.onmanorama.com/content/dam/mm/en/entertainment/entertainment-news/images/2018/10/25/ddlj-at-maratha-mandir.jpg.transform/schema-4x3/image.jpg',
+        imageUrl3:
+            'https://live.staticflickr.com/1233/1174941508_6b4c67698c_b.jpg',
+        intro:
+            'Maratha Mandir is a historic cinema hall located in Mumbai, India. It is renowned for its iconic screening of the Bollywood film "Dilwale Dulhania Le Jayenge" (DDLJ), which has been playing continuously at the theater since its release in 1995.',
+        serviceLocation: [],
+        latitude: 18.9711,
+        longitude: 72.8221,
+      ),
+      Place(
+        serviceCategory: [],
+        serviceImage: [],
+        serviceName: [],
+        servicePrice: [],
+        servicePriceTime: [],
+        serviceRating: [],
+        serviceReviews: [],
+        category: 'Restaurants',
+        imageUrl:
+            'https://resize.indiatvnews.com/en/resize/newbucket/1080_-/2023/04/most-expensive-resturent-1680961710.jpg',
+        name: 'Taj Falaknuma Palace',
+        location: 'Hyderabad, India',
+        rating: 4.7,
+        reviews: 81230,
+        imageUrl2:
+            'https://cf.bstatic.com/xdata/images/hotel/max1024x768/17181467.jpg?k=73b25a9cb3b5e18877cf578c8d146a1ba4ff213a6bf3801f4480a0337bac1b1f&o=&hp=1',
+        imageUrl3:
+            'https://assets.vogue.in/photos/6560bf9b4ff871a6c82114c6/master/w_1600%2Cc_limit/Koishii%2520at%2520The%2520Penthouse%2C%2520Level%252037%2C%2520The%2520St.%2520Regis%2C%2520Mumbai%2520(2)%2520(2).jpg',
+        intro:
+            'Taj Falaknuma Palace is a luxurious heritage hotel located in Hyderabad, India. Originally built in 1894, the palace was once the residence of the Nizam of Hyderabad, considered one of the richest men in the world at the time.',
+        serviceLocation: [],
+        latitude: 17.3315,
+        longitude: 78.4675,
+      ),
     ],
   };
 }
