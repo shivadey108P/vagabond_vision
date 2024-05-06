@@ -31,34 +31,36 @@ To get started with this project, you'll need to have Flutter and Dart installed
 1. Clone the repository to your local system:
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
-Navigate to the project directory:
-bash
-Copy code
-cd your-repo-name
-Install the necessary dependencies:
-bash
-Copy code
+   ```
+2. Navigate to the project directory:
+```bash
+   cd your-repo-name
+```
+
+3. Install the necessary dependencies:
+```
 flutter pub get
-Firebase Setup
+```
+### Firebase Setup
 To set up Firebase for this project, follow these steps:
 
-Create a Firebase project and add your Flutter app to it. You can follow this guide for more information.
-Download the google-services.json (for Android) or GoogleService-Info.plist (for iOS) and place them in the correct location in your project.
-Configure the Firebase options in your project.
-Usage
-Once the setup is complete, you can run the app with the following command:
+1. Create a Firebase project and add your Flutter app to it. You can follow this guide for more information.
+2. Download the google-services.json (for Android) or GoogleService-Info.plist (for iOS) and place them in the correct location in your project.
+3. Configure the Firebase options in your project.
 
-bash
-Copy code
+### Usage
+Once the setup is complete, you can run the app with the following command:
+```
 flutter run
+```
 This will launch the app on a connected device or emulator. You can explore different features such as authentication, notifications, favorite places, and more.
 
-Contributing
+### Contributing
 Contributions are welcome! If you'd like to contribute to the project, please open an issue or submit a pull request. Make sure to follow the project's coding style and include appropriate tests for your changes.
 
-License
+### License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Additional Resources
+### Additional Resources
 Project Documentation
 Video Recordings <!--Yet to add links-->
