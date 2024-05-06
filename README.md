@@ -59,7 +59,7 @@ This will launch the app on a connected device or emulator. You can explore diff
 Contributions are welcome! If you'd like to contribute to the project, please open an issue or submit a pull request. Make sure to follow the project's coding style and include appropriate tests for your changes.
 
 ### License
-This project is licensed under the MIT License. See the [LICENSE](./https://github.com/shivadey108P/vagabond_vision/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./https://github.com/shivadey108P/vagabond_vision/main/LICENSE) file for details.
 
 ### Additional Resources
 Project Documentation
