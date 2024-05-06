@@ -29,9 +29,9 @@ To get started with this project, you'll need to have Flutter and Dart installed
 
 ### Installation
 1. Clone the repository to your local system:
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
+```
+   gh repo clone shivadey108P/vagabond_vision
+```
 2. Navigate to the project directory:
 ```bash
    cd your-repo-name
@@ -39,7 +39,7 @@ To get started with this project, you'll need to have Flutter and Dart installed
 
 3. Install the necessary dependencies:
 ```
-flutter pub get
+   flutter pub get
 ```
 ### Firebase Setup
 To set up Firebase for this project, follow these steps:
@@ -51,7 +51,7 @@ To set up Firebase for this project, follow these steps:
 ### Usage
 Once the setup is complete, you can run the app with the following command:
 ```
-flutter run
+   flutter run
 ```
 This will launch the app on a connected device or emulator. You can explore different features such as authentication, notifications, favorite places, and more.
 
