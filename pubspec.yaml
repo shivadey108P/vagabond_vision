@@ -46,6 +46,12 @@ dependencies:
   fan_carousel_image_slider: ^0.1.2
   flutter_spinkit: ^5.2.1
   form_field_validator: ^1.1.0
+  geolocator: ^11.0.0
+  geocoding: ^2.1.0
+  url_launcher: ^6.2.6
+  dio: ^5.4.3+1
+  firebase_messaging: ^14.9.1
+  shared_preferences: ^2.2.3
 
 
 dev_dependencies:

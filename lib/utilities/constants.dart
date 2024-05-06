@@ -12,6 +12,29 @@ const kOnBoardingMessage = TextStyle(
   color: kGreyColor,
 );
 
+IconData getCategoryIcon(String category) {
+  if (category == 'Restaurants') {
+    return Icons.restaurant;
+  } else if (category == 'Site') {
+    return Icons.apartment;
+  } else if (category == 'Hotels') {
+    return Icons.hotel;
+  } else if (category == 'Theater') {
+    return Icons.theaters;
+  } else if (category == 'Historic Places') {
+    return Icons.fort;
+  } else if (category == 'Parks') {
+    return Icons.park;
+  } else if (category == 'Mountain') {
+    return Icons.hiking;
+  } else if (category == 'Forest') {
+    return Icons.forest;
+  } else if (category == 'Beaches') {
+    return Icons.beach_access;
+  }
+  throw ArgumentError('Unknown category: $category');
+}
+
 const kServiceText = TextStyle(
     fontFamily: 'TiltNeon', fontSize: 16, fontWeight: FontWeight.bold);
 
@@ -22,6 +45,8 @@ const kServiceLocationText = TextStyle(
 
 textFieldDecor(String text, Widget icon, {String? errorText}) =>
     InputDecoration(
+      labelStyle: kTextFormFieldStyle,
+      hintStyle: kTextFormFieldStyle,
       hintText: text,
       errorText: errorText,
       enabledBorder: OutlineInputBorder(
@@ -60,6 +85,14 @@ const kHeadingInCards = TextStyle(
 const kNormal = TextStyle(
   fontFamily: 'TiltNeon',
   fontSize: 22.0,
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+);
+
+const kTextFormFieldStyle = TextStyle(
+  fontFamily: 'TiltNeon',
+  fontSize: 18.0,
+  color: Colors.black,
   fontWeight: FontWeight.w500,
 );
 

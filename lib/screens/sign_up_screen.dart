@@ -25,8 +25,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final _firestore = FirebaseFirestore.instance;
   late String fullName;
   late String email;
-  late String password;
+  String? password;
   String? reEnterPassword;
+  final List<String> genderOptions = ['Male', 'Female'];
+  String? selectedGender;
 
   bool showText1 = false;
   bool showText2 = false;
@@ -163,6 +165,41 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: DropdownButtonFormField<String>(
+                      // dropdownColor: Colors.black,
+                      hint: const Text('Gender'),
+                      // dropdownColor: Colors.white,
+                      style: kTextFormFieldStyle,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(35),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(35),
+                        ),
+                        labelStyle: kNormal,
+                        hintStyle: kNormal,
+                      ),
+                      items: genderOptions.map((String gender) {
+                        return DropdownMenuItem<String>(
+                          value: gender,
+                          child: Text(gender),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        selectedGender = value;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please select your gender";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 50),
                   RoundedRectButton(
                     textInput: 'Sign up',
@@ -174,7 +211,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                         _auth
                             .createUserWithEmailAndPassword(
-                                email: email, password: password)
+                                email: email, password: password!)
                             .then((user) {
                           _firestore
                               .collection('UserData')
@@ -182,7 +219,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               .set({
                             'FullName': fullName,
                             'email': email,
-                            'createdAt': FieldValue.serverTimestamp(),
+                            'gender': selectedGender,
                           });
                           Navigator.pushNamed(context, BottomNavigation.id);
                         }).catchError((e) {
@@ -202,12 +239,17 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                     colour: kDeepOrangeAccent,
                   ),
-                  const SizedBox(height: 175),
+                  const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Text("Already have an account?"),
+                      const Text(
+                        "Already have an account?",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, LoginScreen.id);
@@ -217,6 +259,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: TextStyle(
                             decoration: TextDecoration.underline,
                             fontWeight: FontWeight.bold,
+                            fontSize: 15,
                           ),
                         ),
                       ),

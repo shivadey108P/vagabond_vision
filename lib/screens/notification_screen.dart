@@ -1,33 +1,58 @@
 import 'package:flutter/material.dart';
 
+import '../components/notification_pill.dart';
+import '../data/notification_manager.dart';
+import '../utilities/constants.dart';
+
 class NotificationScreen extends StatefulWidget {
   static const String id = 'notification_screen';
+
   const NotificationScreen({super.key});
 
   @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
+  _NotificationScreenState createState() => _NotificationScreenState();
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
+  List<Map<String, dynamic>> notifications =
+      NotificationManager().notifications;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFA7070),
       appBar: AppBar(
-        title: Text(
-          'Home',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xffFEFDED),
-        toolbarHeight: 60,
-        toolbarOpacity: 0.5,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(25),
-            bottomLeft: Radius.circular(25),
+        automaticallyImplyLeading: false,
+        title: ListTile(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back,
+              size: 30,
+            ),
+          ),
+          title: const Text(
+            'My Notifications',
+            style: kHeading,
           ),
         ),
+      ),
+      body: ListView.builder(
+        itemCount: notifications.length,
+        itemBuilder: (context, index) {
+          final notification = notifications[index];
+
+          return NotificationPill(
+            titleNotification: notification['title'],
+            subjectNotification: notification['subject'],
+            onDelete: () {
+              setState(() {
+                NotificationManager().deleteNotification(index);
+              });
+            },
+          );
+        },
       ),
     );
   }

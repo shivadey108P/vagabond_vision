@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../data/favourite_manager.dart';
 import '/components/buttons_custom.dart';
 import '/components/service_card.dart';
 import '/utilities/constants.dart';
@@ -10,20 +14,171 @@ import '/utilities/constants.dart';
 class PlaceScreen extends StatefulWidget {
   static const String id = 'place_screen';
 
-  const PlaceScreen({super.key});
+  final String imageUrl;
+  final String imageUrl2;
+  final String imageUrl3;
+  final String name;
+  final String location;
+  final double rating;
+  final int reviews;
+  final String intro;
+  final String category;
+  final List<String> serviceImage;
+  final List<String> serviceName;
+  final List<double> serviceRating;
+  final List<int> serviceReviews;
+  final List<String> servicePrice;
+  final List<String> servicePriceTime;
+  final List<String> serviceLocation;
+  final double latitude;
+  final double longitude;
+  final double? userLongitude;
+  final double? userLatitude;
+
+  const PlaceScreen({
+    super.key,
+    required this.imageUrl,
+    required this.imageUrl2,
+    required this.imageUrl3,
+    required this.name,
+    required this.location,
+    required this.rating,
+    required this.reviews,
+    required this.intro,
+    required this.category,
+    required this.serviceImage,
+    required this.serviceName,
+    required this.serviceRating,
+    required this.serviceReviews,
+    required this.servicePrice,
+    required this.servicePriceTime,
+    required this.serviceLocation,
+    required this.latitude,
+    required this.longitude,
+    required this.userLongitude,
+    required this.userLatitude,
+  });
 
   @override
   State<PlaceScreen> createState() => _PlaceScreenState();
 }
 
 class _PlaceScreenState extends State<PlaceScreen> {
-  bool favLike = true;
-  static const List<String> sampleImages = [
-    'https://img.freepik.com/free-photo/beautiful-volcano-landscape_23-2150787896.jpg',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvFPrUA9q-DW96GA_Jv-NfGsK-mQ0qXxs5boZ94PUOSw&s'
-        'https://savorjapan.com/gg/content_image/t0093_030_20180420032213.jpg',
-    'https://www.agoda.com/wp-content/uploads/2021/03/Lake-Kawaguchi-Fujikawaguchiko-attractions-Japan.jpg',
-  ];
+  List<String> sampleImages = [];
+
+  String imageUrl = '';
+  String imageUrl2 = '';
+  String imageUrl3 = '';
+  String name = '';
+  String location = '';
+  double? rating;
+  int? reviews;
+  String intro = '';
+  String? category;
+  List<String>? serviceImage;
+  List<String>? serviceName;
+  List<double>? serviceRating;
+  List<int>? serviceReviews;
+  List<String>? servicePrice;
+  List<String>? servicePriceTime;
+  List<String>? serviceLocation;
+  double? latitude;
+  double? longitude;
+  double? userLongitude;
+  double? userLatitude;
+  double? distance;
+
+  @override
+  void initState() {
+    super.initState();
+    imageUrl = widget.imageUrl;
+    imageUrl2 = widget.imageUrl2;
+    imageUrl3 = widget.imageUrl3;
+    name = widget.name;
+    location = widget.location;
+    rating = widget.rating;
+    reviews = widget.reviews;
+    intro = widget.intro;
+    category = widget.category;
+    serviceImage = widget.serviceImage;
+    serviceName = widget.serviceName;
+    serviceReviews = widget.serviceReviews;
+    serviceRating = widget.serviceRating;
+    servicePriceTime = widget.servicePriceTime;
+    servicePrice = widget.servicePrice;
+    serviceLocation = widget.serviceLocation;
+    userLatitude = widget.userLatitude;
+    userLongitude = widget.userLongitude;
+    latitude = widget.latitude;
+    longitude = widget.longitude;
+
+    sampleImages = [
+      imageUrl,
+      imageUrl2,
+      imageUrl3,
+    ];
+    favLike = FavoriteManager().isFavorite(widget.name);
+    distance = calculateDistance();
+  }
+
+  double calculateDistance() {
+    double? lat1 = userLatitude;
+    double? lon1 = userLongitude;
+    double? lat2 = latitude;
+    double? lon2 = longitude;
+    const R = 6371; // Earth's radius in kilometers
+    final dLat = _degreesToRadians(lat2! - lat1!);
+    final dLon = _degreesToRadians(lon2! - lon1!);
+
+    final a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(_degreesToRadians(lat1)) *
+            cos(_degreesToRadians(lat2)) *
+            sin(dLon / 2) *
+            sin(dLon / 2);
+
+    final c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    return R * c;
+  }
+
+  double _degreesToRadians(double degrees) {
+    return degrees * (pi / 180);
+  }
+
+  void toggleFavorite() {
+    if (favLike) {
+      FavoriteManager().removeFavorite(widget.name);
+      Fluttertoast.showToast(msg: 'Removed from Favourites');
+    } else {
+      FavoriteManager().addFavorite({
+        'imageUrl': widget.imageUrl,
+        'category': widget.category,
+        'location': widget.location,
+        'rating': widget.rating,
+        'reviews': widget.reviews,
+        'name': widget.name,
+      });
+      Fluttertoast.showToast(msg: 'Added to Favourites');
+    }
+
+    setState(() {
+      favLike = !favLike;
+    });
+  }
+
+  bool favLike = false;
+
+  Future<void> _getDirections() async {
+    String url =
+        'https://www.google.com/maps/dir/?api=1&origin=$userLatitude,$userLongitude&destination=$latitude,$longitude&travelmode=driving';
+    try {
+      await launchUrl(
+        Uri.parse(url),
+      );
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +199,18 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         bottomRight: Radius.circular(50),
                       ),
                     ),
-                    child: Expanded(
-                      child: FanCarouselImageSlider(
-                        imagesLink: sampleImages,
-                        isAssets: false,
-                        autoPlay: false,
-                        imageFitMode: BoxFit.fill,
-                        expandedImageFitMode: BoxFit.fill,
-                        sliderHeight: 400,
-                        expandImageHeight: 490,
-                        expandImageWidth: 300,
-                      ),
+                    child: FanCarouselImageSlider(
+                      imagesLink: sampleImages,
+                      initalPageIndex: 0,
+                      isAssets: false,
+                      autoPlay: false,
+                      sidesOpacity: 0.8,
+                      imageFitMode: BoxFit.cover,
+                      expandedImageFitMode: BoxFit.cover,
+                      sliderHeight: 450,
+                      indicatorActiveColor: kDeepOrangeAccent,
+                      expandImageHeight: 400,
+                      expandImageWidth: 400,
                     ),
                   ),
                 ),
@@ -62,15 +218,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   left: 330,
                   top: 445,
                   child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        favLike = !favLike;
-                        !favLike
-                            ? Fluttertoast.showToast(msg: 'Added to Favourites')
-                            : Fluttertoast.showToast(
-                                msg: 'Removed from Favourites');
-                      });
-                    },
+                    onTap: toggleFavorite,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
@@ -89,29 +237,29 @@ class _PlaceScreenState extends State<PlaceScreen> {
                       child: Center(
                         child: favLike
                             ? const Icon(
-                                Icons.favorite_outline,
-                                color: Color.fromARGB(255, 239, 66, 22),
+                                Icons.favorite,
+                                color: kDeepOrangeAccent,
                                 size: 45,
                               )
                             : const Icon(
-                                Icons.favorite,
-                                color: Color.fromARGB(255, 239, 66, 22),
+                                Icons.favorite_outline,
+                                color: kDeepOrangeAccent,
                                 size: 45,
                               ),
                       ),
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   top: 498,
                   child: Row(
                     children: [
-                      SizedBox(width: 32),
-                      Icon(Icons.location_pin,
+                      const SizedBox(width: 32),
+                      const Icon(Icons.location_pin,
                           color: Color.fromARGB(255, 237, 91, 18), size: 20),
                       Text(
-                        'Fuji Mountain, JAPAN',
-                        style: TextStyle(
+                        location,
+                        style: const TextStyle(
                           color: Color.fromARGB(255, 230, 79, 3),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -124,22 +272,22 @@ class _PlaceScreenState extends State<PlaceScreen> {
               ],
             ),
             const SizedBox(height: 5),
-            const Padding(
-              padding: EdgeInsets.only(left: 32),
+            Padding(
+              padding: const EdgeInsets.only(left: 32),
               child: Text(
-                'Fuji Mountain',
-                style: TextStyle(
+                name,
+                style: const TextStyle(
                     color: Colors.black,
                     fontFamily: 'TiltNeon',
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 35, right: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 35, right: 8),
               child: Text(
-                'Fuji is the tallest peak in Japan, the result of volcanic activity that began approximately 100,000 years ago. Today, Mt. Fuji and the surrounding area are a popular recreational destination for hiking, camping and relaxation.',
-                style: TextStyle(
+                intro,
+                style: const TextStyle(
                     color: Color.fromARGB(255, 127, 127, 127),
                     fontFamily: 'TiltNeon',
                     fontSize: 15),
@@ -151,36 +299,37 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 height: 35,
                 width: 450,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Icon(Icons.star, color: Colors.amber, size: 18),
-                    const SizedBox(width: 3),
-                    const Text(
-                      '4.5',
-                      style: TextStyle(
+                    const SizedBox(width: 2),
+                    Text(
+                      rating.toString(),
+                      style: const TextStyle(
                           fontFamily: 'TiltNeon',
-                          fontSize: 15.5,
+                          fontSize: 13,
                           color: Colors.black),
                     ),
-                    const SizedBox(width: 20),
+                    const SizedBox(width: 5),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: const Color.fromARGB(255, 255, 248, 248),
                       ),
                       height: 30,
-                      width: 135,
+                      width: 120,
                       child: GestureDetector(
                         onTap: () {},
                         child: const Row(
                           children: [
                             SizedBox(width: 8),
                             Icon(Icons.reviews_outlined,
-                                size: 15, color: kDeepOrangeAccent),
+                                size: 13, color: kDeepOrangeAccent),
                             SizedBox(width: 5),
                             Text(
                               'Read Reviews',
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 13,
                                   fontFamily: 'TiltNeon',
                                   color: kDeepOrangeAccent),
                             ),
@@ -188,74 +337,79 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 3),
                     const Text('|',
                         style: TextStyle(
                             color: Color.fromARGB(255, 126, 126, 126))),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 3),
                     SvgPicture.asset(
                       'icons/conversion_path.svg', // Path to your colorful Google logo
-                      width: 20, // Icon width
-                      height: 20,
+                      width: 15, // Icon width
+                      height: 15,
                       color: kDeepOrangeAccent,
                       // Icon height
                     ),
-                    const SizedBox(width: 5),
-                    const Text('30 min by car',
-                        style: TextStyle(
-                            fontSize: 15.5,
-                            fontFamily: 'TiltNeon',
-                            color: Colors.black)),
+                    const SizedBox(width: 3),
+                    Text(
+                      'Approx. ${distance?.toInt()} kms',
+                      style: const TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'TiltNeon',
+                          color: Colors.black),
+                    ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
-              padding: EdgeInsets.only(left: 35),
+            Padding(
+              padding: const EdgeInsets.only(left: 35),
               child: Text(
-                'Services in Fuji Mountains',
-                style: TextStyle(
+                'Services in $name',
+                style: const TextStyle(
                     color: Color.fromARGB(255, 85, 84, 84),
                     fontFamily: 'TiltNeon',
                     fontSize: 20),
               ),
             ),
-            ServiceCard(
-              imageURL:
-                  'https://www.agoda.com/wp-content/uploads/2021/03/Ubuya-best-Fujikawaguchiko-hotels-where-to-stay-ryokans-onsen-resorts.jpg',
-              serviceName: 'Ubuya Resort',
-              serviceLocation: 'Yamanashi, Japan',
-              iconData: Icons.apartment,
-              serviceType: 'Resort',
-              onTap: () {},
-            ),
-            ServiceCard(
-              imageURL:
-                  'https://savorjapan.com/gg/content_image/t0093_030_20180420032213.jpg',
-              serviceName: 'Fuji Tempura Idaten',
-              serviceLocation: 'Yamanashi, Japan',
-              iconData: Icons.restaurant,
-              serviceType: 'Restaurant',
-              onTap: () {},
-            ),
-            ServiceCard(
-              imageURL:
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvFPrUA9q-DW96GA_Jv-NfGsK-mQ0qXxs5boZ94PUOSw&s',
-              serviceName: 'Narusawa Ice Cave',
-              serviceLocation: 'Yamanashi, Japan',
-              iconData: Icons.map,
-              serviceType: 'Cave',
-              onTap: () {},
-            ),
-            ServiceCard(
-              imageURL:
-                  'https://www.agoda.com/wp-content/uploads/2021/03/Lake-Kawaguchi-Fujikawaguchiko-attractions-Japan.jpg',
-              serviceName: 'Lake Kawaguchiko',
-              serviceLocation: 'Yamanashi, Japan',
-              iconData: Icons.kayaking,
-              serviceType: 'Lake',
-              onTap: () {},
+            SizedBox(
+              height: 300, // Adjust the height to fit your layout
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount:
+                    serviceName?.length ?? 0, // Ensure item count is not null
+                itemBuilder: (context, index) {
+                  // Ensure all required data is available before creating the widget
+                  if (serviceImage == null ||
+                      serviceName == null ||
+                      serviceLocation == null ||
+                      servicePrice == null ||
+                      servicePriceTime == null ||
+                      serviceRating == null ||
+                      serviceReviews == null) {
+                    return const Center(
+                        child: Text('Service data is missing')); // Fallback
+                  }
+
+                  return ServiceCard(
+                    imageURL: serviceImage![
+                        index], // Non-null because of the check above
+                    serviceName: serviceName![index],
+                    serviceLocation: serviceLocation![index],
+                    iconData: getCategoryIcon(
+                        category ?? ''), // Provide default value if null
+                    serviceType: category ??
+                        'Unknown', // Provide default category if null
+                    onTap: () {}, // Handle onTap appropriately
+                    servicePrice: servicePrice![index],
+                    servicePriceTime: servicePriceTime![index],
+                    rating: serviceRating![
+                        index], // Access without null-safety check
+                    reviews: serviceReviews![
+                        index], // Access without null-safety check
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -266,7 +420,9 @@ class _PlaceScreenState extends State<PlaceScreen> {
           color: Colors.transparent,
           child: RoundedRectButton(
             textInput: 'Get Directions',
-            onPressed: () {},
+            onPressed: () {
+              _getDirections();
+            },
             colour: kDeepOrangeAccent,
           ),
         ),

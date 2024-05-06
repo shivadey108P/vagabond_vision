@@ -2,40 +2,43 @@ import 'package:flutter/material.dart';
 
 import '/utilities/constants.dart';
 
-class ServiceCard extends StatelessWidget {
+class FavouriteCard extends StatefulWidget {
   final String imageURL;
-  final String serviceName;
-  final String serviceLocation;
+  final String name;
+  final String location;
   final IconData iconData;
-  final String serviceType;
-  final VoidCallback onTap;
-  final String servicePrice;
-  final String servicePriceTime;
+  final String category;
   final double rating;
   final int reviews;
+  final VoidCallback onFavoriteToggle;
 
-  const ServiceCard({
+  const FavouriteCard({
     super.key,
     required this.imageURL,
-    required this.serviceName,
-    required this.serviceLocation,
     required this.iconData,
-    required this.serviceType,
-    required this.onTap,
-    required this.servicePrice,
-    required this.servicePriceTime,
     required this.rating,
     required this.reviews,
+    required this.name,
+    required this.location,
+    required this.category,
+    required this.onFavoriteToggle,
   });
+
+  @override
+  State<FavouriteCard> createState() => _FavouriteCardState();
+}
+
+class _FavouriteCardState extends State<FavouriteCard> {
+  bool favLike = true;
 
   @override
   Widget build(BuildContext context) {
     double widthType = 60;
-    if (serviceType == 'Restaurant') {
+    if (widget.category == 'Restaurant') {
       widthType = 90;
-    } else if (serviceType == 'Resort') {
+    } else if (widget.category == 'Resort') {
       widthType = 70;
-    } else if (serviceType == 'Historic Places') {
+    } else if (widget.category == 'Historic Places') {
       widthType = 120;
     }
     return Column(
@@ -61,7 +64,8 @@ class ServiceCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     image: DecorationImage(
-                        image: NetworkImage(imageURL), fit: BoxFit.cover),
+                        image: NetworkImage(widget.imageURL),
+                        fit: BoxFit.cover),
                   ),
                   height: 120,
                   width: 120,
@@ -79,7 +83,7 @@ class ServiceCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            serviceName,
+                            widget.name,
                             style: kServiceText,
                           ),
                           const SizedBox(
@@ -97,7 +101,7 @@ class ServiceCard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  iconData,
+                                  widget.iconData,
                                   color: const Color(0xffa56a12),
                                   size: 12,
                                 ),
@@ -105,7 +109,7 @@ class ServiceCard extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Text(
-                                  serviceType,
+                                  widget.category,
                                   style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
@@ -131,7 +135,7 @@ class ServiceCard extends StatelessWidget {
                               color: kGreyColor,
                             ),
                             Text(
-                              serviceLocation,
+                              widget.location,
                               style: kServiceLocationText,
                             ),
                           ],
@@ -145,7 +149,7 @@ class ServiceCard extends StatelessWidget {
                           const Icon(Icons.star, color: Colors.amber, size: 12),
                           const SizedBox(width: 3),
                           Text(
-                            rating.toString(),
+                            widget.rating.toString(),
                             style: const TextStyle(
                                 fontFamily: 'TiltNeon',
                                 fontSize: 15,
@@ -165,7 +169,7 @@ class ServiceCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 2),
                                 Text(
-                                  '${reviews.toString()} Reviews',
+                                  '${widget.reviews.toString()} Reviews',
                                   style: const TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'TiltNeon',
@@ -179,49 +183,27 @@ class ServiceCard extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'Rs. $servicePrice',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            servicePriceTime,
-                            style: const TextStyle(
-                              color: kGreyColor,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
                     ],
                   ),
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: onTap,
+                  onTap: widget.onFavoriteToggle,
                   child: Container(
                     margin: const EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.circle,
                       border: Border.all(
                         width: 2,
-                        color: const Color(0xffe7e7ef),
+                        color: kDeepOrangeAccent,
                       ),
                     ),
-                    height: 70,
-                    width: 30,
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
+                    height: 45,
+                    width: 45,
+                    child: Icon(
+                      favLike ? Icons.favorite : Icons.favorite_outline,
                       color: kDeepOrangeAccent,
-                      size: 22,
+                      size: 30,
                     ),
                   ),
                 ),

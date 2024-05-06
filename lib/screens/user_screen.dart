@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '/components/custom_pill.dart';
 import '/utilities/constants.dart';
-import 'bottom_navigation_screen.dart';
 import 'onboarding_screen.dart';
 
 class UserScreen extends StatefulWidget {
@@ -23,6 +23,8 @@ class _UserScreenState extends State<UserScreen> {
   bool showSpinner = false;
   late User loggedInUser;
   final _fireStore = FirebaseFirestore.instance;
+
+  String gender = '';
 
   @override
   void initState() {
@@ -46,12 +48,14 @@ class _UserScreenState extends State<UserScreen> {
 
     if (docSnapshot.exists) {
       final fullName = docSnapshot.data()?['FullName'];
-      final emailId = docSnapshot.data()?['email']; // Retrieve 'FullName'
+      final emailId = docSnapshot.data()?['email'];
+      final gen = docSnapshot.data()?['gender'];
 
       if (fullName != null && fullName.isNotEmpty) {
         final nameParts = fullName.split(' '); // Extract first name
         name = nameParts.isNotEmpty ? nameParts[0] : '';
-        email = emailId; // Get the first name
+        email = emailId;
+        gender = gen;
         setState(() {}); // Update UI with the retrieved first name
       }
     }
@@ -61,6 +65,24 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: ListTile(
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back,
+                size: 30,
+              ),
+            ),
+            title: const Text(
+              'Profile Information',
+              style: kHeading,
+            ),
+          ),
+        ),
         // Background color
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
@@ -73,48 +95,21 @@ class _UserScreenState extends State<UserScreen> {
                 // Use Column for vertical stacking
                 crossAxisAlignment: CrossAxisAlignment.start, // Align items
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, BottomNavigation.id);
-                        },
-                        child: const Icon(
-                          Icons.arrow_back,
-                          size: 30,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
-                        'Profile Information',
-                        style: kHeading,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
                       children: [
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                              // Navigate to UserScreen
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const UserScreen(), // Target screen
-                              ),
-                            );
+                            Fluttertoast.showToast(
+                                msg:
+                                    "This functionality is not yet developed!");
                           },
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 50,
-                            backgroundImage: AssetImage('images/boy.jpg'),
+                            backgroundImage: gender == 'Male'
+                                ? const AssetImage('images/boy.jpg')
+                                : const AssetImage('images/girl.jpg'),
                           ),
                         ),
                         const SizedBox(
@@ -148,7 +143,11 @@ class _UserScreenState extends State<UserScreen> {
                         customPill(
                           iconData: Icons.person,
                           pillName: 'My Profile',
-                          onTap: () {},
+                          onTap: () {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "This functionality is not yet developed!");
+                          },
                           style: kNormal,
                         ),
                         const SizedBox(
@@ -157,7 +156,11 @@ class _UserScreenState extends State<UserScreen> {
                         customPill(
                           iconData: Icons.settings,
                           pillName: 'Settings',
-                          onTap: () {},
+                          onTap: () {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "This functionality is not yet developed!");
+                          },
                           style: kNormal,
                         ),
                         const SizedBox(
@@ -166,7 +169,11 @@ class _UserScreenState extends State<UserScreen> {
                         customPill(
                           iconData: Icons.question_answer,
                           pillName: 'FAQ',
-                          onTap: () {},
+                          onTap: () {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "This functionality is not yet developed!");
+                          },
                           style: kNormal,
                         ),
                         const SizedBox(
@@ -175,7 +182,11 @@ class _UserScreenState extends State<UserScreen> {
                         customPill(
                           iconData: Icons.person_search_rounded,
                           pillName: 'About App',
-                          onTap: () {},
+                          onTap: () {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "This functionality is not yet developed!");
+                          },
                           style: kNormal,
                         ),
                         const SizedBox(
@@ -184,7 +195,11 @@ class _UserScreenState extends State<UserScreen> {
                         customPill(
                           iconData: Icons.help,
                           pillName: 'Help',
-                          onTap: () {},
+                          onTap: () {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "This functionality is not yet developed!");
+                          },
                           style: kNormal,
                         ),
                         const SizedBox(
