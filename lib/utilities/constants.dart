@@ -31,6 +31,14 @@ IconData getCategoryIcon(String category) {
     return Icons.forest;
   } else if (category == 'Beaches') {
     return Icons.beach_access;
+  } else if (category == 'Bazaar') {
+    return Icons.shopping_bag;
+  } else if (category == 'Shopping Mall') {
+    return Icons.shopping_bag;
+  } else if (category == 'Playground') {
+    return Icons.sports_cricket;
+  } else if (category == 'Food Court') {
+    return Icons.fastfood;
   }
   throw ArgumentError('Unknown category: $category');
 }

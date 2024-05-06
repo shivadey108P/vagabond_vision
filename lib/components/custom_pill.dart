@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vagabond_vision/utilities/constants.dart';
 
-class customPill extends StatelessWidget {
+class CustomPill extends StatelessWidget {
   final IconData iconData;
   final String pillName;
   final VoidCallback onTap;
   final TextStyle style;
-  const customPill({
+  const CustomPill({
     super.key,
     required this.iconData,
     required this.pillName,

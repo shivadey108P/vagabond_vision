@@ -140,7 +140,7 @@ class _UserScreenState extends State<UserScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: Column(
                       children: [
-                        customPill(
+                        CustomPill(
                           iconData: Icons.person,
                           pillName: 'My Profile',
                           onTap: () {
@@ -153,7 +153,7 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        customPill(
+                        CustomPill(
                           iconData: Icons.settings,
                           pillName: 'Settings',
                           onTap: () {
@@ -166,7 +166,7 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        customPill(
+                        CustomPill(
                           iconData: Icons.question_answer,
                           pillName: 'FAQ',
                           onTap: () {
@@ -179,7 +179,7 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        customPill(
+                        CustomPill(
                           iconData: Icons.person_search_rounded,
                           pillName: 'About App',
                           onTap: () {
@@ -192,7 +192,7 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        customPill(
+                        CustomPill(
                           iconData: Icons.help,
                           pillName: 'Help',
                           onTap: () {
@@ -205,7 +205,7 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        customPill(
+                        CustomPill(
                           iconData: Icons.logout,
                           pillName: 'Logout',
                           onTap: () {

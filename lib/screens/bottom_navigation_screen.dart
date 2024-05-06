@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vagabond_vision/screens/user_screen.dart';
 import 'package:vagabond_vision/utilities/constants.dart';
@@ -9,6 +10,8 @@ import 'notification_screen.dart';
 
 class BottomNavigation extends StatefulWidget {
   static const String id = 'bottomNav_screen';
+
+  const BottomNavigation({super.key});
 
   @override
   State<BottomNavigation> createState() => _BottomNavigationState();
@@ -46,18 +49,24 @@ class _BottomNavigationState extends State<BottomNavigation> {
         },
         items: [
           // Define your BottomNavigationBar items here
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+          BottomNavigationBarItem(
+            icon: Icon(currentIndex == 0
+                ? CupertinoIcons.house_fill
+                : CupertinoIcons.house),
             label: '',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+          BottomNavigationBarItem(
+            icon: Icon(currentIndex == 1
+                ? CupertinoIcons.heart_fill
+                : CupertinoIcons.heart),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Stack(
               children: [
-                const Icon(Icons.notifications),
+                Icon(currentIndex == 2
+                    ? CupertinoIcons.bell_fill
+                    : CupertinoIcons.bell),
                 if (_hasNewNotifications() &&
                     currentIndex !=
                         2) // Show red dot only when it's not the selected tab
@@ -87,8 +96,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             label: '',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+          BottomNavigationBarItem(
+            icon: Icon(currentIndex == 3
+                ? CupertinoIcons.person_alt
+                : CupertinoIcons.person),
             label: '',
           ),
         ],

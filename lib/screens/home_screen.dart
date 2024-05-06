@@ -388,6 +388,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             longitude: place.longitude,
                             userLatitude: latitude,
                             userLongitude: longitude,
+                            serviceCategories: place.serviceCategory,
                           ),
                         ),
                       );

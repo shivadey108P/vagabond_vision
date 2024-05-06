@@ -30,6 +30,7 @@ class PlaceScreen extends StatefulWidget {
   final List<String> servicePrice;
   final List<String> servicePriceTime;
   final List<String> serviceLocation;
+  final List<String> serviceCategories;
   final double latitude;
   final double longitude;
   final double? userLongitude;
@@ -57,6 +58,7 @@ class PlaceScreen extends StatefulWidget {
     required this.longitude,
     required this.userLongitude,
     required this.userLatitude,
+    required this.serviceCategories,
   });
 
   @override
@@ -76,6 +78,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
   String intro = '';
   String? category;
   List<String>? serviceImage;
+  List<String>? serviceCategories;
   List<String>? serviceName;
   List<double>? serviceRating;
   List<int>? serviceReviews;
@@ -107,6 +110,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
     servicePriceTime = widget.servicePriceTime;
     servicePrice = widget.servicePrice;
     serviceLocation = widget.serviceLocation;
+    serviceCategories = widget.serviceCategories;
     userLatitude = widget.userLatitude;
     userLongitude = widget.userLongitude;
     latitude = widget.latitude;
@@ -386,7 +390,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
                       servicePrice == null ||
                       servicePriceTime == null ||
                       serviceRating == null ||
-                      serviceReviews == null) {
+                      serviceReviews == null ||
+                      serviceCategories == null) {
                     return const Center(
                         child: Text('Service data is missing')); // Fallback
                   }
@@ -396,17 +401,16 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         index], // Non-null because of the check above
                     serviceName: serviceName![index],
                     serviceLocation: serviceLocation![index],
-                    iconData: getCategoryIcon(
-                        category ?? ''), // Provide default value if null
-                    serviceType: category ??
-                        'Unknown', // Provide default category if null
+                    iconData: getCategoryIcon(serviceCategories![
+                        index]), // Provide default value if null
+                    serviceType: serviceCategories![
+                        index], // Provide default category if null
                     onTap: () {}, // Handle onTap appropriately
                     servicePrice: servicePrice![index],
                     servicePriceTime: servicePriceTime![index],
                     rating: serviceRating![
                         index], // Access without null-safety check
-                    reviews: serviceReviews![
-                        index], // Access without null-safety check
+                    reviews: serviceReviews![index],
                   );
                 },
               ),

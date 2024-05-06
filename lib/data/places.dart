@@ -100,35 +100,44 @@ class Places {
             'The Taj Mahal, located in Agra, India, is a stunning white marble mausoleum built in the 17th century by Mughal Emperor Shah Jahan in memory of his wife Mumtaz Mahal. Renowned for its intricate architecture and iconic domes, it\'s a UNESCO World Heritage Site and a symbol of enduring love.',
       ),
       Place(
-        serviceCategory: [],
-        serviceImage: [],
-        serviceName: [],
-        servicePrice: [],
-        servicePriceTime: [],
-        serviceRating: [],
-        serviceReviews: [],
+        serviceImage: [
+          'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/42/e8/71/laad-bazaar.jpg?w=600&h=-1&s=1'
+        ],
+        serviceName: ['Laal Bazaar'],
+        servicePrice: ['3,846'],
+        servicePriceTime: ['day'],
+        serviceRating: [4.2],
+        serviceReviews: [1800],
+        serviceLocation: ['Laad Bazaar Road, Hyderabad'],
         category: 'Historic Places',
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Charminar_Hyderabad_1.jpg/544px-Charminar_Hyderabad_1.jpg',
-        imageUrl2: '',
-        imageUrl3: '',
+        imageUrl2:
+            'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/42/e8/71/laad-bazaar.jpg?w=600&h=-1&s=1',
+        imageUrl3:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStCsn-OncoBnJ4vqB4rnTQHbTP-b6b66Ntfg&usqp=CAU',
         name: 'Charminar',
         location: 'Hyderabad, Telangana, India',
         rating: 3.9,
         reviews: 50,
-        intro: '',
-        serviceLocation: [],
-        latitude: 78.3,
-        longitude: 14.0,
+        intro:
+            "Charminar is a historic monument in Hyderabad, India, built in 1591 by Quli Qutb Shah. Recognized for its distinctive four minarets, it's a landmark of Islamic architecture and a symbol of Hyderabad's rich history and cultural heritage",
+        latitude: 17.3616,
+        longitude: 78.4747,
+        serviceCategory: ['Bazaar'],
       ),
+
       Place(
-        serviceCategory: [],
-        serviceImage: [],
-        serviceName: [],
-        servicePrice: [],
-        servicePriceTime: [],
-        serviceRating: [],
-        serviceReviews: [],
+        serviceCategory: ['Playground', 'Food Court'],
+        serviceImage: [
+          'https://www.gwsportsapp.in/media/ground-images/gallery/MC44OTY2OTcwMCAxNDgxMDk5MzE3.jpeg',
+          'https://b.zmtcdn.com/data/pictures/0/95510/9a63cdb8ffe653a4618fff4c0780b7e5.jpg'
+        ],
+        serviceName: ['Sports Arena', 'Mindspace Food Court'],
+        servicePrice: ['800', '200'],
+        servicePriceTime: [' day', 'two people'],
+        serviceRating: [3.8, 3.9],
+        serviceReviews: [493, 293],
         category: 'Site',
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/MindSpace_campus_in_Hyderabad%2C_India.jpg/800px-MindSpace_campus_in_Hyderabad%2C_India.jpg',
@@ -136,10 +145,13 @@ class Places {
         location: 'Hyd,Telangana,India',
         rating: 4.2,
         reviews: 30,
-        imageUrl2: '',
-        imageUrl3: '',
-        intro: '',
-        serviceLocation: [],
+        imageUrl2:
+            'https://www.gwsportsapp.in/media/ground-images/gallery/MC44OTY2OTcwMCAxNDgxMDk5MzE3.jpeg',
+        imageUrl3:
+            'https://b.zmtcdn.com/data/pictures/0/95510/9a63cdb8ffe653a4618fff4c0780b7e5.jpg',
+        intro:
+            "Mindspace IT Park in Hyderabad is a major technology hub, housing a mix of global tech giants and startups. Spread over 110 acres, it features modern infrastructure, business-friendly amenities, and sustainable design, making it a prime location for IT and software industries.",
+        serviceLocation: ['Hyd,Telangana,India', 'Hyd,Telangana,India'],
         latitude: 17.4425,
         longitude: 78.3816,
       ),
@@ -212,6 +224,117 @@ class Places {
             'Nehru Zoological Park, located in Hyderabad, India, is a sprawling zoo established in 1959. It features a wide array of native and exotic animals, dedicated conservation programs, and educational exhibits, promoting wildlife protection and awareness among visitors.',
         latitude: 78.3,
         longitude: 14.0,
+      ),
+
+      Place(
+        serviceImage: [
+          'https://assets-global.website-files.com/5b56319971ac8c7475a9d877/5f711753f3dbe9de67044794_elephant-beach-shoreline-.jpg',
+          'https://assets-global.website-files.com/5b56319971ac8c7475a9d877/5f7117ac8dc40eeb268e19cf_elephant-beach-banana-ride-.jpg'
+        ],
+        serviceName: ['Elephant Beach', 'water booths'],
+        servicePrice: ['1000', '2500'],
+        servicePriceTime: ['day', 'day'],
+        serviceRating: [4.8, 4.6],
+        serviceReviews: [1000, 2500],
+        category: 'Beaches',
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/6/63/Havelock%2C_Andaman_%26_Nicobar_Islands.JPG',
+        name: 'Havelock island',
+        location: 'Andaman and Nicobar, India',
+        rating: 4.2,
+        reviews: 3000,
+        imageUrl2:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5SH0cZZDY3wr0g-QX1yfxerAD-n6B00-mIhJR8gPNUQ&s',
+        imageUrl3:
+            'https://cdn.experienceandamans.com/images/havelock-island-package.jpg',
+        intro:
+            'Havelock Island is one of the islands of the Andaman and Nicobar archipelago located in the Indian Ocean. It is an island with the area close to 36 square miles and the same amount of miles of amazing coastline, with great beaches and beautiful nature.',
+        serviceLocation: ['Havelock Island, India', 'Havelock Island, India'],
+        latitude: 11.960000,
+        longitude: 93.000000,
+        serviceCategory: ['Beaches', 'Beaches'],
+      ),
+      Place(
+        serviceImage: [
+          'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201603171229319815-1039759-ed23839c4fc511ea84d20242ac110003.jpg?&output-quality=75&downsize=520:350&crop=520:350;56,0&output-format=jpg',
+          'https://www.canalbayhouseboats.com/images/houseboat.jpg'
+        ],
+        serviceName: ['Eco Boat House', 'Canal Bay Houseboats'],
+        servicePrice: ['5169', '5500'],
+        servicePriceTime: ['day/night', 'day/night'],
+        serviceRating: [4.8, 4.9],
+        serviceReviews: [7000, 10500],
+        category: 'Site',
+        imageUrl:
+            'https://cdn.getyourguide.com/img/tour/50b656475c1c0.jpeg/97.jpg',
+        name: 'Alappuzha',
+        location: 'Cochin, Kerala, India',
+        rating: 4.9,
+        reviews: 8000,
+        imageUrl2:
+            'https://upload.wikimedia.org/wikipedia/commons/e/e4/Alappuzha_Boat_Beauty_W.jpg',
+        imageUrl3:
+            'https://deih43ym53wif.cloudfront.net/alleppey-kerala-india-shutterstock_1154918653_25793b1171.jpeg',
+        intro:
+            'Alappuzha (or Alleppey) is a city on the Laccadive Sea in the southern Indian state of Kerala. It is best known for houseboat cruises along the rustic Kerala backwaters, a network of tranquil canals and lagoons. Alappuzha Beach is the site of the 19th-century Alappuzha Lighthouse. The city Mullakkal Temple features a traditional design.',
+        serviceLocation: ['Cochin, Kerala, India', 'Cochin, Kerala, India'],
+        latitude: 9.48,
+        longitude: 76.32,
+        serviceCategory: ['Beaches', 'Beaches'],
+      ),
+      Place(
+        serviceImage: [
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/118372125.jpg?k=89b6f784e9f5ea4560257a059c6efab3c405a533aae68e3d62d19ea4a46470f8&o=&hp=1'
+        ],
+        serviceName: ['Guest Rooms'],
+        servicePrice: ['15890'],
+        servicePriceTime: ['day/night'],
+        serviceRating: [5.0],
+        serviceReviews: [13000],
+        category: 'Hotels',
+        imageUrl:
+            'https://lh3.googleusercontent.com/p/AF1QipNA4VHkS1aYz88k92tBK9ryW_WwREqR2cDs-3RO=w287-h192-n-k-rw-no-v1',
+        name: 'Taj Palace',
+        location: 'New Delhi, India',
+        rating: 5.0,
+        reviews: 29000,
+        imageUrl2:
+            'https://lh3.googleusercontent.com/p/AF1QipNgFHd66NFC5qUQZNWfMEDRRfso8kSLSXXy2aMD=w287-h192-n-k-rw-no-v1',
+        imageUrl3:
+            'https://lh3.googleusercontent.com/p/AF1QipM3vkn01avcANEK3NHhqfQFLmBxfF0gsRakhJV0=w287-h192-n-k-rw-no-v1',
+        intro:
+            'The Taj Hotel in New Delhi epitomizes luxury with its impeccable service and elegant design, catering to both business and leisure travelers. Situated in a prime location, it offers luxurious accommodations, diverse dining options, and world-class amenities, making it a landmark destination in the heart of the bustling capital city.',
+        serviceLocation: ['New Delhi, India'],
+        latitude: 28.5951,
+        longitude: 77.1709,
+        serviceCategory: ['Hotels'],
+      ),
+      Place(
+        serviceImage: [
+          'https://media.architecturaldigest.com/photos/56eae20138cde43e159fc53c/16:9/w_2580,c_limit/most-expensive-suite-burj-al-arab-07.jpg'
+        ],
+        serviceName: ['Luxury Rooms'],
+        servicePrice: ['106,846'],
+        servicePriceTime: ['day/night'],
+        serviceRating: [4.9],
+        serviceReviews: [18000],
+        serviceLocation: ['Burj Al Arab, Dubai  '],
+        category: 'Hotels',
+        imageUrl:
+            'https://cdn.britannica.com/68/250068-050-B0AD857A/Burj-Al-Arab-luxury-hotel-Dubai.jpg',
+        imageUrl2:
+            'https://www.visitdubai.com/-/media/gathercontent/poi/b/burj-al-arab/fallback-image/burj-al-arab-1-dtcm.jpg',
+        imageUrl3:
+            'https://focus.hidubai.com/content/images/size/w1000/2022/11/BurjAlArab-Cover.jpg',
+        name: 'Burj Al Arab',
+        location: 'Umm Suqeim 3 - Dubai',
+        rating: 5.0,
+        reviews: 28901,
+        intro:
+            'The Burj Al Arab is a symbol of luxury and extravagance, often referred to as the worlds only "7-star" hotel. Located in Dubai, it stands as an iconic sail-shaped structure on its own man-made island, offering breathtaking views of the Arabian Gulf. Known for its opulent interiors, personalized service, and array of luxurious amenities, the Burj Al Arab provides an unmatched experience for discerning travelers seeking the epitome of luxury hospitality.',
+        latitude: 25.1412,
+        longitude: 55.1852,
+        serviceCategory: ['Hotels'],
       ),
     ],
   };

@@ -31,12 +31,14 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double widthType = 60;
-    if (serviceType == 'Restaurant') {
-      widthType = 90;
-    } else if (serviceType == 'Resort') {
-      widthType = 70;
-    } else if (serviceType == 'Historic Places') {
-      widthType = 120;
+    if (serviceType.length <= 5) {
+      widthType = 60;
+    } else if (serviceType.length > 5 && serviceType.length <= 8) {
+      widthType = 75;
+    } else if (serviceType.length >= 9 && serviceType.length <= 10) {
+      widthType = 95;
+    } else if (serviceType.length >= 11) {
+      widthType = 125;
     }
     return Column(
       children: [
